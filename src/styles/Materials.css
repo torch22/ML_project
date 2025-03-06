@@ -1,0 +1,165 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #F98A48;
+  }
+  
+  .content {
+    padding: 20px;
+  }
+  
+  h1 {
+    text-align: center;
+    color: #23374D;
+    margin-bottom: 30px;
+  }
+  
+  .accordion {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  .accordion-item {
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    margin-bottom: 10px;
+    overflow: hidden;
+    background-color: #2E3F50; /* Менее контрастный тёмный фон */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Добавляем тень для глубины */
+  }
+  
+  .accordion-header, .nested-accordion-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #2E3F50; /* Сохраняем тёмный фон для заголовков */
+    padding: 15px;
+    cursor: pointer;
+    color: #F98A48;
+    font-weight: bold;
+    transition: background-color 0.3s, transform 0.2s;
+    border-radius: 15px 15px 0 0; /* Скругляем только верхние углы заголовков */
+  }
+  
+  .nested-accordion-header {
+    background-color: #23374D; /* Тёмный фон для вложенных заголовков */
+    padding: 10px 15px;
+    border-radius: 15px 15px 0 0; /* Скругляем только верхние углы вложенных заголовков */
+  }
+  
+  .accordion-header:hover, .nested-accordion-header:hover {
+    background-color: #1f2d3e; /* Более тёмный оттенок при наведении */
+    transform: scale(1.02); /* Лёгкое увеличение при наведении */
+  }
+  
+  .accordion-header svg, .nested-accordion-header svg {
+    margin-left: 10px;
+    color: #F98A48;
+    font-size: 16px;
+    transition: color 0.3s;
+  }
+  
+  .accordion-header:hover svg, .nested-accordion-header:hover svg {
+    color: #F6D465; /* Изменение цвета иконок при наведении */
+  }
+  
+  .accordion-content, .nested-accordion-content {
+    background-color: #2E3F50; /* Менее контрастный тёмный фон вместо белого */
+    padding: 15px;
+    color: #F98A48; /* Текст оранжевый для контраста */
+    border-radius: 0 0 15px 15px; /* Скругляем нижние углы контента */
+  }
+  
+  .clickable-list a {
+    text-decoration: none;
+    color: #F6D465; /* Жёлтый цвет для ссылок, чтобы сохранить контраст */
+    display: block;
+    padding: 5px 0;
+    transition: color 0.3s;
+  }
+  
+  .clickable-list a:hover {
+    color: #F98A48; /* Оранжевый цвет при наведении */
+    text-decoration: underline;
+  }
+  
+  /* Адаптация под разные устройства */
+  @media (max-width: 768px) {
+    .content {
+      padding: 15px;
+    }
+  
+    h1 {
+      font-size: 22px;
+      margin-bottom: 20px;
+    }
+  
+    .accordion {
+      max-width: 90%;
+    }
+  
+    .accordion-item {
+      border-radius: 12px;
+      margin-bottom: 8px;
+    }
+  
+    .accordion-header, .nested-accordion-header {
+      padding: 12px;
+      font-size: 16px;
+    }
+  
+    .accordion-header svg, .nested-accordion-header svg {
+      font-size: 14px;
+      margin-left: 8px;
+    }
+  
+    .accordion-content, .nested-accordion-content {
+      padding: 12px;
+    }
+  
+    .clickable-list a {
+      font-size: 14px;
+      padding: 4px 0;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .content {
+      padding: 10px;
+    }
+  
+    h1 {
+      font-size: 20px;
+      margin-bottom: 15px;
+    }
+  
+    .accordion {
+      max-width: 85%;
+    }
+  
+    .accordion-item {
+      border-radius: 10px;
+      margin-bottom: 6px;
+    }
+  
+    .accordion-header, .nested-accordion-header {
+      padding: 10px;
+      font-size: 14px;
+    }
+  
+    .accordion-header svg, .nested-accordion-header svg {
+      font-size: 12px;
+      margin-left: 6px;
+    }
+  
+    .accordion-content, .nested-accordion-content {
+      padding: 10px;
+    }
+  
+    .clickable-list a {
+      font-size: 12px;
+      padding: 3px 0;
+    }
+  }

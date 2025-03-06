@@ -1,0 +1,16 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #F98A48;
+  }
+  
+  .opis {
+    padding: 20px;
+    text-align: left;
+  }
+  
+  .opis h1 {
+    color: #23374D;
+    margin-bottom: 10px;
+  }

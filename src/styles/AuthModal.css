@@ -1,0 +1,211 @@
+.modal-overlay {
+    display: block;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.7);
+  }
+  
+  .modal-content {
+    background-color: #2E3F50;
+    margin: 10% auto;
+    padding: 20px;
+    border-radius: 12px;
+    width: 320px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    color: #F98A48;
+    position: relative;
+  }
+  
+  .close {
+    color: #F6D465;
+    float: right;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: #fff;
+  }
+  
+  .modal-content h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 22px;
+  }
+  
+  .modal-content input[type="text"],
+  .modal-content input[type="password"],
+  .modal-content input[type="email"] {
+    width: 100%;
+    padding: 12px 25px 12px 12px; /* Сохраняем место справа для иконки */
+    margin: 10px 0;
+    box-sizing: border-box;
+    border: 2px solid #23374D;
+    border-radius: 6px;
+    background-color: #23374D;
+    color: #F98A48;
+    font-size: 16px;
+    transition: border-color 0.3s;
+    position: relative; /* Для позиционирования иконки внутри */
+  }
+  
+  .modal-content input[type="text"]:focus,
+  .modal-content input[type="password"]:focus,
+  .modal-content input[type="email"]:focus {
+    border-color: #F6D465;
+    outline: none;
+  }
+  
+  .error-input {
+    border-color: #ff4444 !important; /* Красная рамка для ошибок */
+  }
+  
+  .error-message {
+    color: #ff4444;
+    font-size: 14px;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+  
+  .modal-content button {
+    width: 100%;
+    padding: 12px;
+    background-color: #F6D465;
+    color: #23374D;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s, transform 0.3s;
+    margin-top: 10px;
+  }
+  
+  .modal-content button:hover {
+    background-color: #e0b347;
+    transform: scale(1.05);
+  }
+  
+  .toggle-link {
+    color: #F98A48;
+    text-decoration: underline;
+    cursor: pointer;
+    margin-top: 15px;
+    display: block;
+    text-align: center;
+    font-size: 14px;
+    transition: color 0.3s;
+  }
+  
+  .toggle-link:hover {
+    color: #F6D465;
+  }
+  
+  .password-container {
+    position: relative;
+    margin: 10px 0;
+  }
+  
+  .password-toggle {
+    position: absolute;
+    right: 5px; /* Сдвигаем иконку ближе к правому краю, уменьшая область нажатия */
+    top: 12px; /* Фиксируем иконку сверху поля ввода */
+    background: none !important; /* Убеждаемся, что нет фона */
+    border: none !important; /* Убеждаемся, что нет рамки */
+    outline: none !important; /* Убираем контур при фокусе */
+    color: #F6D465; /* Фиксированный жёлтый цвет, как у кнопки "Войти" */
+    cursor: pointer;
+    font-size: 14px; /* Сохраняем размер иконки 14px */
+    padding: 0; /* Убираем padding, чтобы иконка была компактной */
+    z-index: 1; /* Уменьшаем z-index, чтобы иконка не перекрывала поле ввода */
+    opacity: 1; /* Делаем иконку полностью видимой по умолчанию */
+    width: 14px; /* Устанавливаем точную ширину иконки для ограничения области нажатия */
+    height: 14px; /* Устанавливаем точную высоту иконки для ограничения области нажатия */
+    /* Убираем transition, чтобы не было анимации */
+  }
+  
+  /* Стили для иконок */
+  .password-toggle svg {
+    font-size: 14px; /* Сохраняем размер иконки 14px */
+    color: #F6D465; /* Учитываем твой стиль с фиксированным жёлтым цветом */
+    background: none !important; /* Убеждаемся, что нет фона у иконки */
+    border: none !important; /* Убеждаемся, что нет рамки у иконки */
+    box-shadow: none !important; /* Убираем тень, если она есть */
+    outline: none !important; /* Убираем контур, если он есть */
+    width: 14px; /* Ограничиваем ширину SVG для точной области нажатия */
+    height: 14px; /* Ограничиваем высоту SVG для точной области нажатия */
+  }
+  
+  /* Адаптация под разные устройства */
+  @media (max-width: 768px) {
+    .modal-content {
+      width: 90%; /* Уменьшаем ширину модального окна на планшетах */
+      margin: 15% auto; /* Увеличиваем отступ сверху для мобильных устройств */
+    }
+  
+    .modal-content input[type="text"],
+    .modal-content input[type="password"],
+    .modal-content input[type="email"] {
+      padding: 10px 20px 10px 10px; /* Уменьшаем padding для мобильных устройств */
+      font-size: 14px; /* Уменьшаем размер шрифта */
+    }
+  
+    .password-toggle {
+      right: 3px; /* Корректируем позицию иконки на планшетах */
+      top: 10px; /* Корректируем позицию сверху */
+      font-size: 12px; /* Уменьшаем размер иконки на планшетах */
+      width: 12px; /* Уменьшаем ширину для точной области нажатия */
+      height: 12px; /* Уменьшаем высоту для точной области нажатия */
+    }
+  
+    .modal-content button {
+      padding: 10px;
+      font-size: 14px; /* Уменьшаем размер текста кнопки */
+    }
+  
+    .modal-content h2 {
+      font-size: 20px; /* Уменьшаем размер заголовка */
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .modal-content {
+      width: 85%; /* Ещё больше уменьшаем ширину на мобильных устройствах */
+      margin: 20% auto; /* Увеличиваем отступ сверху для очень маленьких экранов */
+    }
+  
+    .modal-content input[type="text"],
+    .modal-content input[type="password"],
+    .modal-content input[type="email"] {
+      padding: 8px 15px 8px 8px; /* Ещё больше уменьшаем padding */
+      font-size: 12px; /* Ещё больше уменьшаем размер шрифта */
+    }
+  
+    .password-toggle {
+      right: 2px; /* Ещё больше корректируем позицию иконки на мобильных устройствах */
+      top: 8px; /* Корректируем позицию сверху */
+      font-size: 10px; /* Ещё больше уменьшаем размер иконки на мобильных устройствах */
+      width: 10px; /* Ещё больше уменьшаем ширину для точной области нажатия */
+      height: 10px; /* Ещё больше уменьшаем высоту для точной области нажатия */
+    }
+  
+    .modal-content button {
+      padding: 8px;
+      font-size: 12px; /* Ещё больше уменьшаем размер текста кнопки */
+    }
+  
+    .modal-content h2 {
+      font-size: 18px; /* Ещё больше уменьшаем размер заголовка */
+    }
+  
+    .toggle-link {
+      font-size: 12px; /* Уменьшаем размер ссылки */
+    }
+  }
