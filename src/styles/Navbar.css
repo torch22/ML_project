@@ -1,194 +1,119 @@
-nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #23374D;
-    padding: 10px 20px;
-    position: relative; /* Для позиционирования сайдбара и overlay */
-    width: 100%; /* Убедимся, что nav занимает всю ширину */
+.navbar-desktop {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #1A1E2D;
+  color: #E0E0E0;
+}
+
+.navbar-left {
+  display: flex;
+  gap: 15px;
+}
+
+.navbar-right {
+  display: flex;
+  align-items: center;
+}
+
+.nav-link {
+  color: #E0E0E0;
+  text-decoration: none;
+  font-size: 16px;
+  transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+  color: #00D4FF;
+}
+
+.auth-button {
+  background: linear-gradient(135deg, #00D4FF, #C300FF);
+  color: #E0E0E0;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 16px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: transform 0.3s ease;
+  margin-right: 20px;
+}
+
+.auth-button:hover {
+  transform: translateY(-2px);
+}
+
+.navbar-mobile {
+  display: none;
+  justify-content: space-between; /* Распределяем элементы по краям */
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #1A1E2D;
+}
+
+.navbar-mobile-left {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-mobile-right {
+  display: flex;
+  align-items: center;
+}
+
+.menu-toggle {
+  background: none;
+  border: none;
+  color: #E0E0E0;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 5px;
+}
+
+.sidebar-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+  z-index: 1000;
+}
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 250px;
+  height: 100%;
+  background-color: #1A1E2D;
+  z-index: 1001;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+
+.sidebar-link {
+  color: #E0E0E0;
+  text-decoration: none;
+  font-size: 18px;
+  margin: 10px 0;
+  transition: color 0.3s ease;
+}
+
+.sidebar-link:hover {
+  color: #00D4FF;
+}
+
+@media (max-width: 768px) {
+  .navbar-desktop {
+    display: none;
   }
-  
-  .navbar-desktop, .navbar-mobile {
+  .navbar-mobile {
     display: flex;
-    align-items: center;
-    gap: 10px;
   }
-  
-  .navbar-left {
-    display: flex;
-    gap: 10px;
-    align-items: center;
-  }
-  
-  .navbar-right {
-    display: flex;
-    gap: 10px;
-    align-items: center;
-  }
-  
   .auth-button {
-    background-color: #F6D465;
-    border: none;
-    padding: 10px 20px;
-    margin: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    border-radius: 5px;
-    color: #23374D;
-    transition: background-color 0.3s, transform 0.3s;
-    position: relative;
-    overflow: hidden;
-    opacity: 1; /* Убеждаемся, что кнопка всегда видна */
-    visibility: visible; /* Убеждаемся, что кнопка не скрыта */
+    margin-right: 10px; /* Меньший отступ на мобильных */
   }
-  
-  .auth-button:hover {
-    background-color: #e0b347;
-    transform: scale(1.05);
-  }
-  
-  .nav-link {
-    color: #F6D465; /* Жёлтый цвет для лучшей видимости на тёмном фоне */
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    gap: 8px; /* Расстояние между иконкой и текстом */
-    padding: 8px 12px; /* Добавляем отступы для кликабельности */
-    transition: color 0.3s, background-color 0.3s;
-  }
-  
-  .nav-link:hover {
-    color: #fff; /* Белый цвет при наведении */
-    background-color: #1f2d3e; /* Лёгкий акцентный фон при наведении */
-    border-radius: 5px;
-  }
-  
-  .menu-toggle {
-    display: none; /* Скрываем на десктопах по умолчанию */
-    background: none;
-    border: none;
-    color: #F6D465; /* Жёлтый цвет, как у кнопки "Вход / Регистрация" */
-    font-size: 24px;
-    cursor: pointer;
-    padding: 5px;
-    margin-left: 10px; /* Отступ для лучшей видимости */
-    opacity: 1; /* Убеждаемся, что кнопка всегда видна */
-    visibility: visible; /* Убеждаемся, что кнопка не скрыта */
-    transition: color 0.3s; /* Сохраняем только изменение цвета при наведении */
-  }
-  
-  .menu-toggle:hover {
-    color: #fff; /* Белый цвет при наведении */
-  }
-  
-  .sidebar {
-    position: fixed;
-    top: 0;
-    right: 20px; /* Отступ 20px от правого края на мобильных */
-    width: 250px; /* Ширина сайдбара на мобильных */
-    height: 100vh;
-    background-color: #23374D;
-    padding: 20px;
-    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2); /* Тень слева для эффекта выезда */
-    z-index: 1001; /* Убедимся, что сайdбар над overlay */
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    transform: translateX(0); /* Изначальное положение без смещения */
-  }
-  
-  .sidebar-link {
-    color: #F6D465;
-    text-decoration: none;
-    padding: 10px 15px;
-    font-size: 16px;
-    transition: color 0.3s, background-color 0.3s;
-  }
-  
-  .sidebar-link:hover {
-    color: #fff;
-    background-color: #1f2d3e; /* Лёгкий акцентный фон при наведении */
-    border-radius: 5px;
-  }
-  
-  .sidebar .auth-button {
-    width: 100%;
-    margin: 10px 0;
-    font-size: 16px;
-  }
-  
-  .sidebar-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-    background-color: rgba(0, 0, 0, 0.7); /* Затемнённый фон */
-    z-index: 1000; /* Под сайдбаром, но над остальным контентом */
-    cursor: pointer;
-  }
-  
-  /* Адаптация под разные устройства */
-  @media (max-width: 768px) {
-    .navbar-desktop {
-      display: none; /* Скрываем горизонтальное меню на мобильных */
-    }
-  
-    .navbar-mobile {
-      display: flex; /* Показываем мобильную навигацию */
-      justify-content: flex-end; /* Выравниваем гамбургер вправо */
-    }
-  
-    nav {
-      padding: 8px 15px;
-    }
-  
-    .menu-toggle {
-      display: block; /* Показываем гамбургер на мобильных */
-      z-index: 1002; /* Увеличиваем z-index, чтобы гамбургер был над другими элементами */
-    }
-  
-    .sidebar {
-      right: 15px; /* Уменьшаем отступ до 15px на планшетах */
-      width: 200px; /* Уменьшаем ширину сайдбара на планшетах */
-      padding: 15px;
-    }
-  
-    .sidebar-link {
-      font-size: 14px;
-      padding: 8px 12px;
-    }
-  
-    .sidebar .auth-button {
-      padding: 8px 15px;
-      font-size: 14px;
-    }
-  }
-  
-  @media (max-width: 480px) {
-    nav {
-      padding: 6px 10px;
-    }
-  
-    .menu-toggle {
-      font-size: 18px; /* Ещё больше уменьшаем размер гамбургера на мобильных */
-      margin-left: 5px; /* Уменьшаем отступ */
-      z-index: 1002; /* Сохраняем высокий z-index */
-    }
-  
-    .sidebar {
-      right: 10px; /* Ещё больше уменьшаем отступ до 10px на мобильных */
-      width: 180px; /* Ещё больше уменьшаем ширину сайдбара на мобильных */
-      padding: 10px;
-    }
-  
-    .sidebar-link {
-      font-size: 12px;
-      padding: 6px 10px;
-    }
-  
-    .sidebar .auth-button {
-      padding: 6px 10px;
-      font-size: 12px;
-    }
-  }
+}

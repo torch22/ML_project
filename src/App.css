@@ -1,6 +1,70 @@
-/* src/App.css */
-.App {
-    text-align: center;
-    background-color: #F98A48; /* Оранжевый фон, как указано в стилях */
-    min-height: 100vh;
-  }
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Poppins:wght@700&display=swap');
+
+:root {
+  --background: #1A1E2D; /* Dark Slate */
+  --text: #E0E0E0; /* Light Gray */
+  --accent: #00D4FF; /* Neon Blue */
+  --secondary: #C300FF; /* Cyber Purple */
+  --border: #5A6377; /* Steel Gray */
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  margin: 0;
+  background-color: var(--background);
+  color: var(--text);
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+}
+
+h1 {
+  font-size: 2.5rem; /* 40px */
+}
+
+h2 {
+  font-size: 2rem; /* 32px */
+}
+
+a {
+  color: var(--secondary);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: var(--accent);
+}
+
+button {
+  background: linear-gradient(135deg, var(--accent), var(--secondary));
+  color: var(--text);
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  transition: box-shadow 0.3s ease, transform 0.2s ease;
+  cursor: pointer;
+}
+
+button:hover {
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+  transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+  h1 { font-size: 2rem; }
+  h2 { font-size: 1.5rem; }
+  button { padding: 8px 15px; font-size: 14px; }
+}
+
+@media (max-width: 480px) {
+  h1 { font-size: 1.5rem; }
+  h2 { font-size: 1.2rem; }
+  button { padding: 6px 12px; font-size: 12px; }
+}

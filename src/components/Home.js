@@ -1,13 +1,8 @@
-import React, { useState } from 'react';
-import Navbar from './Navbar';
-import AuthModal from './AuthModal';
 import { motion } from 'framer-motion';
-import { FaBook, FaChartBar, FaUserFriends, FaLock, FaChartLine } from 'react-icons/fa'; // Иконки для features
+import { FaBook, FaChartBar, FaUserFriends, FaLock, FaChartLine } from 'react-icons/fa';
 import '../styles/Home.css';
 
 function Home() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
   const cardVariants = {
     hidden: { opacity: 0, y: 20 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
@@ -15,8 +10,6 @@ function Home() {
 
   return (
     <div>
-      <Navbar onAuthClick={() => setIsModalOpen(true)} />
-      <AuthModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
       <motion.div
         className="opis"
         initial={{ opacity: 0 }}

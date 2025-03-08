@@ -1,14 +1,11 @@
-import React, { useState } from 'react';
-import Navbar from './Navbar';
-import AuthModal from './AuthModal';
 import { motion } from 'framer-motion';
-import { FaPlus, FaMinus } from 'react-icons/fa'; // Иконки для аккордеона
+import React, { useState } from 'react';
+import { FaPlus, FaMinus } from 'react-icons/fa';
 import '../styles/Materials.css';
 
 function Materials() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [activeAccordions, setActiveAccordions] = useState({});
-  const [activeNestedAccordions, setActiveNestedAccordions] = useState({});
+  const [activeAccordions, setActiveAccordions] = React.useState({});
+  const [activeNestedAccordions, setActiveNestedAccordions] = React.useState({});
 
   const toggleAccordion = (index) => {
     setActiveAccordions((prev) => ({
@@ -41,8 +38,6 @@ function Materials() {
 
   return (
     <div>
-      <Navbar onAuthClick={() => setIsModalOpen(true)} />
-      <AuthModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
       <div className="content">
         <h1>Обучающие Материалы</h1>
         <div className="accordion">

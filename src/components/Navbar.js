@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { FaBars, FaTimes } from 'react-icons/fa'; // Иконки для меню
+import { FaBars, FaTimes } from 'react-icons/fa';
 import '../styles/Navbar.css';
 
 function Navbar({ onAuthClick }) {
@@ -11,7 +11,6 @@ function Navbar({ onAuthClick }) {
     setIsSidebarOpen(!isSidebarOpen);
   };
 
-  // Обработчик клика вне меню для закрытия на мобильных устройствах
   React.useEffect(() => {
     const handleClickOutside = (event) => {
       if (isSidebarOpen && !event.target.closest('.sidebar') && !event.target.closest('.menu-toggle')) {
@@ -46,9 +45,14 @@ function Navbar({ onAuthClick }) {
         </div>
       </div>
       <div className="navbar-mobile">
-        <button className="menu-toggle" onClick={toggleSidebar} aria-label="Toggle navigation menu" aria-expanded={isSidebarOpen} aria-hidden={false}>
-          {isSidebarOpen ? <FaTimes /> : <FaBars />}
-        </button>
+        <div className="navbar-mobile-left">
+          <button onClick={onAuthClick} className="auth-button">Вход / Регистрация</button>
+        </div>
+        <div className="navbar-mobile-right">
+          <button className="menu-toggle" onClick={toggleSidebar} aria-label="Toggle navigation menu" aria-expanded={isSidebarOpen} aria-hidden={false}>
+            {isSidebarOpen ? <FaTimes /> : <FaBars />}
+          </button>
+        </div>
       </div>
       {isSidebarOpen && (
         <>
@@ -70,7 +74,6 @@ function Navbar({ onAuthClick }) {
             <Link to="/" className="sidebar-link" onClick={toggleSidebar}>Меню</Link>
             <Link to="/about" className="sidebar-link" onClick={toggleSidebar}>О продукте</Link>
             <Link to="/materials" className="sidebar-link" onClick={toggleSidebar}>Обучающие материалы</Link>
-            <button onClick={() => { onAuthClick(); toggleSidebar(); }} className="auth-button">Вход / Регистрация</button>
           </motion.div>
         </>
       )}

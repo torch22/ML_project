@@ -1,16 +1,28 @@
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #F98A48;
-  }
-  
-  .opis {
-    padding: 20px;
-    text-align: left;
-  }
-  
-  .opis h1 {
-    color: #23374D;
-    margin-bottom: 10px;
-  }
+.opis {
+  padding: 20px;
+  text-align: left;
+}
+
+.opis h1 {
+  color: var(--text);
+  margin-bottom: 10px;
+  font-size: 2.5rem;
+}
+
+.opis h2 {
+  color: var(--text);
+  margin-bottom: 20px;
+  font-size: 2rem;
+}
+
+@media (max-width: 768px) {
+  .opis { padding: 15px; }
+  .opis h1 { font-size: 2rem; }
+  .opis h2 { font-size: 1.5rem; }
+}
+
+@media (max-width: 480px) {
+  .opis { padding: 10px; }
+  .opis h1 { font-size: 1.5rem; }
+  .opis h2 { font-size: 1.2rem; }
+}
