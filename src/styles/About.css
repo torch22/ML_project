@@ -1,28 +1,247 @@
-.opis {
+.about-wrapper {
+  min-height: 100vh;
   padding: 20px;
-  text-align: left;
+  padding-bottom: 60px;
+  position: relative;
+  background: var(--background);
 }
 
-.opis h1 {
-  color: var(--text);
-  margin-bottom: 10px;
-  font-size: 2.5rem;
+.about-hero {
+  text-align: center;
+  padding: 50px 20px;
+  min-height: 60vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: var(--background);
 }
 
-.opis h2 {
+.about-content {
+  max-width: 800px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.about-hero h1 {
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 700;
+  font-size: 3rem;
   color: var(--text);
   margin-bottom: 20px;
-  font-size: 2rem;
+}
+
+.about-hero p {
+  font-size: 1.2rem;
+  color: var(--text-secondary);
+}
+
+.timeline-section {
+  padding: 40px 20px;
+  background: var(--background);
+}
+
+.timeline-section h2 {
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 700;
+  font-size: 2.5rem;
+  color: var(--accent);
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.timeline {
+  position: relative;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(180deg, var(--accent), #C300FF);
+}
+
+.timeline-item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 30px;
+  position: relative;
+}
+
+.timeline-item:nth-child(even) {
+  flex-direction: row-reverse;
+}
+
+.timeline-content {
+  width: 45%;
+  background: var(--card-bg);
+  padding: 15px;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.timeline-content h3 {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.3rem;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+
+.timeline-content p {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+.team-section {
+  padding: 40px 20px;
+  background: var(--background);
+}
+
+.team-section h2 {
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 700;
+  font-size: 2.5rem;
+  color: var(--accent);
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.team-section p {
+  text-align: center;
+  font-size: 1.2rem;
+  color: var(--text-secondary);
+  margin-bottom: 30px;
+}
+
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 15px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.team-member {
+  text-align: center;
+}
+
+.team-placeholder {
+  width: 80px;
+  height: 80px;
+  background: #5A6377;
+  border-radius: 50%;
+  margin: 0 auto 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text);
+}
+
+.team-member h3 {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.1rem;
+  color: var(--text);
+}
+
+.team-member p {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+@media (max-width: 1024px) {
+  .about-content {
+    max-width: 700px;
+  }
+  .about-hero h1 {
+    font-size: 2.5rem;
+  }
+  .about-hero p {
+    font-size: 1rem;
+  }
+  .timeline-section h2 {
+    font-size: 2rem;
+  }
+  .timeline-content h3 {
+    font-size: 1.2rem;
+  }
 }
 
 @media (max-width: 768px) {
-  .opis { padding: 15px; }
-  .opis h1 { font-size: 2rem; }
-  .opis h2 { font-size: 1.5rem; }
+  .about-content {
+    max-width: 600px;
+  }
+  .about-hero {
+    padding: 40px 20px;
+    min-height: 50vh;
+  }
+  .about-hero h1 {
+    font-size: 2rem;
+  }
+  .about-hero p {
+    font-size: 0.9rem;
+  }
+  .timeline-section {
+    padding: 30px 10px;
+  }
+  .timeline-section h2 {
+    font-size: 1.8rem;
+  }
+  .timeline-content h3 {
+    font-size: 1.1rem;
+  }
+  .timeline-content p {
+    font-size: 0.8rem;
+  }
+  .team-section {
+    padding: 30px 10px;
+  }
+  .team-section h2 {
+    font-size: 1.8rem;
+  }
+  .team-member h3 {
+    font-size: 1rem;
+  }
+  .footer-content {
+    flex-direction: column;
+    text-align: center;
+  }
 }
 
 @media (max-width: 480px) {
-  .opis { padding: 10px; }
-  .opis h1 { font-size: 1.5rem; }
-  .opis h2 { font-size: 1.2rem; }
+  .about-content {
+    max-width: 90%;
+  }
+  .about-hero {
+    padding: 30px 10px;
+    min-height: 40vh;
+  }
+  .about-hero h1 {
+    font-size: 1.5rem;
+  }
+  .about-hero p {
+    font-size: 0.8rem;
+  }
+  .timeline-section h2 {
+    font-size: 1.5rem;
+  }
+  .timeline-content h3 {
+    font-size: 1rem;
+  }
+  .timeline-content p {
+    font-size: 0.7rem;
+  }
+  .team-section h2 {
+    font-size: 1.5rem;
+  }
+  .team-member h3 {
+    font-size: 0.9rem;
+  }
+  .team-member p {
+    font-size: 0.8rem;
+  }
 }

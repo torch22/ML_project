@@ -4,6 +4,15 @@ body {
   font-family: 'Inter', sans-serif;
   font-weight: 400;
   margin: 0;
+  position: relative;
+}
+html, body {
+  margin: 0;
+  padding: 0;
+  background: #1A1E2D; /* Соответствует фону страниц */
+  overflow-x: hidden;
+  min-height: 100vh;
+  overscroll-behavior-y: none; /* Запрещает "отскок" на iOS */
 }
 
 h1, h2, h3, h4, h5, h6 {

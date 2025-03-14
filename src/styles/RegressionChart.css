@@ -1,0 +1,92 @@
+.regression-chart-wrapper {
+    min-height: 100vh;
+    padding: 80px 20px 20px; /* Добавляем отступ сверху для учета высоты Navbar */
+    background: var(--background);
+    text-align: center;
+  }
+  
+  .regression-chart-wrapper h2 {
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 700;
+    font-size: 2.5rem;
+    color: var(--accent);
+    margin-bottom: 20px;
+  }
+  
+  canvas {
+    width: 100%;
+    max-width: 600px;
+    height: 300px;
+    max-height: 300px;
+    margin: 20px auto;
+    display: block;
+    border: 1px solid var(--border);
+  }
+  
+  .input-container {
+    margin-top: 10px;
+  }
+  
+  .input-container input {
+    padding: 5px;
+    margin: 5px;
+    border: 2px solid var(--border);
+    border-radius: 4px;
+    background-color: var(--background);
+    color: var(--text);
+    font-size: 16px;
+  }
+  
+  .input-container button {
+    background: linear-gradient(135deg, var(--accent), #C300FF);
+    color: var(--text);
+    padding: 5px 10px;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .input-container button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 15px rgba(0, 212, 255, 0.8);
+  }
+  
+  .regression-info {
+    margin-top: 10px;
+    font-weight: bold;
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+  }
+  
+  @media (max-width: 768px) {
+    .regression-chart-wrapper {
+      padding-top: 60px; /* Уменьшаем отступ для мобильных устройств */
+    }
+  
+    canvas {
+      max-width: 400px;
+      height: 250px;
+      max-height: 250px;
+    }
+  
+    .regression-chart-wrapper h2 {
+      font-size: 2rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .regression-chart-wrapper {
+      padding-top: 50px;
+    }
+  
+    canvas {
+      max-width: 300px;
+      height: 200px;
+      max-height: 200px;
+    }
+  
+    .regression-chart-wrapper h2 {
+      font-size: 1.5rem;
+    }
+  }

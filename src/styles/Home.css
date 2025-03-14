@@ -1,104 +1,209 @@
-.opis {
+.home-wrapper {
+  min-height: 100vh;
   padding: 20px;
-  text-align: left;
+  padding-bottom: 60px;
+  position: relative;
+  background: var(--background);
 }
 
-.opis h1 {
-  color: var(--text);
-  margin-bottom: 10px;
-  font-size: 2.5rem;
+.hero-section {
+  text-align: center;
+  padding: 50px 20px;
+  min-height: 60vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: var(--background);
+  position: relative;
+  overflow: hidden;
 }
 
-.opis h2 {
-  color: var(--text);
-  margin-bottom: 20px;
+.hero-content {
+  max-width: 800px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.parallax-text {
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.hero-section h2 {
   font-size: 2rem;
+  color: var(--text-secondary);
+  margin-bottom: 30px;
 }
 
-.features {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 20px;
-  background-color: rgba(255, 255, 255, 0.05);
-  padding: 20px;
-  margin: 20px 0;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+.cta-button {
+  padding: 12px 24px;
+  font-size: 16px;
+  background: linear-gradient(135deg, var(--accent), #C300FF);
+  box-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+  border: none;
+  border-radius: 6px;
+  color: var(--text);
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.cta-button:hover {
+  box-shadow: 0 0 15px rgba(0, 212, 255, 0.8);
+}
+
+.features-section {
+  padding: 40px 0;
+  background: var(--background);
+}
+
+.features-section h2 {
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 700;
+  font-size: 2.5rem;
+  color: var(--accent);
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.features-grid {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 15px;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 10px;
+  position: relative;
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    rgba(255, 255, 255, 0.8) 15%,
+    rgba(255, 255, 255, 1) 50%,
+    rgba(255, 255, 255, 0.8) 85%,
+    transparent 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    rgba(255, 255, 255, 0.8) 15%,
+    rgba(255, 255, 255, 1) 50%,
+    rgba(255, 255, 255, 0.8) 85%,
+    transparent 100%
+  );
 }
 
 .feature-card {
-  background-color: rgba(255, 255, 255, 0.05);
+  background: var(--card-bg);
+  border-radius: 12px;
   padding: 15px;
-  border-radius: 10px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-  color: var(--text);
   text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  transition: transform 0.3s, background-color 0.3s;
+  transition: transform 0.3s ease;
+  min-width: 200px;
+  flex: 0 0 auto;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
 }
 
 .feature-card:hover {
-  transform: scale(1.05);
-  background-color: rgba(255, 255, 255, 0.1);
+  transform: rotateX(5deg) rotateY(5deg) translateY(-10px);
+  box-shadow: 0 10px 20px var(--shadow);
 }
 
-.feature-card svg {
-  font-size: 24px;
-  margin-bottom: 10px;
+.feature-icon {
+  font-size: 1.8rem;
   color: var(--accent);
+  margin-bottom: 8px;
 }
 
-.feature-card span {
-  font-weight: bold;
-}
-
-.data {
-  background-color: rgba(255, 255, 255, 0.05);
-  padding: 20px;
-  text-align: center;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-}
-
-.data button {
-  background: linear-gradient(135deg, var(--accent), var(--secondary));
-  border: none;
-  padding: 10px 20px;
-  margin: 5px;
-  cursor: pointer;
-  font-size: 16px;
+.feature-card h3 {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.3rem;
   color: var(--text);
-  border-radius: 8px;
-  transition: box-shadow 0.3s ease, transform 0.3s ease;
+  margin-bottom: 8px;
 }
 
-.data button:hover {
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
-  transform: translateY(-2px);
+.feature-card p {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+@media (max-width: 1024px) {
+  .hero-content {
+    max-width: 700px;
+  }
+  .hero-section h2 {
+    font-size: 1.8rem;
+  }
+  .features-section h2 {
+    font-size: 2rem;
+  }
+  .feature-card h3 {
+    font-size: 1.2rem;
+  }
 }
 
 @media (max-width: 768px) {
-  .opis { padding: 15px; }
-  .opis h1 { font-size: 2rem; }
-  .opis h2 { font-size: 1.5rem; }
-  .features { grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 15px; padding: 15px; }
-  .feature-card { padding: 12px; border-radius: 8px; }
-  .feature-card svg { font-size: 20px; margin-bottom: 8px; }
-  .feature-card span { font-size: 14px; }
-  .data { padding: 15px; }
-  .data button { padding: 8px 15px; font-size: 14px; }
+  .hero-content {
+    max-width: 600px;
+  }
+  .hero-section {
+    padding: 40px 20px;
+    min-height: 50vh;
+  }
+  .hero-section h2 {
+    font-size: 1.5rem;
+  }
+  .cta-button {
+    padding: 10px 20px;
+    font-size: 14px;
+  }
+  .features-section {
+    padding: 30px 0;
+  }
+  .features-section h2 {
+    font-size: 1.8rem;
+  }
+  .feature-card {
+    padding: 12px;
+    min-width: 180px;
+  }
+  .feature-card h3 {
+    font-size: 1.1rem;
+  }
+  .feature-card p {
+    font-size: 0.8rem;
+  }
 }
 
 @media (max-width: 480px) {
-  .opis { padding: 10px; }
-  .opis h1 { font-size: 1.5rem; }
-  .opis h2 { font-size: 1.2rem; }
-  .features { grid-template-columns: 1fr; gap: 10px; padding: 10px; }
-  .feature-card { padding: 10px; border-radius: 6px; }
-  .feature-card svg { font-size: 18px; margin-bottom: 6px; }
-  .feature-card span { font-size: 12px; }
-  .data { padding: 10px; }
-  .data button { padding: 6px 12px; font-size: 12px; }
+  .hero-content {
+    max-width: 90%;
+  }
+  .hero-section {
+    padding: 30px 10px;
+    min-height: 40vh;
+  }
+  .hero-section h2 {
+    font-size: 1.2rem;
+  }
+  .cta-button {
+    padding: 8px 16px;
+    font-size: 12px;
+  }
+  .features-section h2 {
+    font-size: 1.5rem;
+  }
+  .feature-card h3 {
+    font-size: 1rem;
+  }
+  .feature-card p {
+    font-size: 0.7rem;
+  }
+  .feature-card {
+    min-width: 150px;
+  }
 }

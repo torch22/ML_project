@@ -1,72 +1,75 @@
 .modal-overlay {
-  display: block;
   position: fixed;
-  z-index: 1000;
-  left: 0;
   top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
-  overflow: auto;
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: rgba(0, 0, 0, 0.7); 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+[data-theme="dark"] .modal-overlay {
+  background-color: rgba(0, 0, 0, 0.4); 
 }
 
 .modal-content {
-  background-color: #1A1E2D;
-  margin: 10% auto;
+  background-color: var(--card-bg);
   padding: 20px;
   border-radius: 12px;
-  width: 80%;
-  max-width: 320px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-  color: #E0E0E0;
+  width: 90%;
+  max-width: 400px;
   position: relative;
+  color: var(--text);
+  font-family: 'Inter', sans-serif;
+  box-shadow: 0 0 20px var(--shadow);
+}
+
+[data-theme="dark"] .modal-content {
+  background-color: rgba(26, 30, 45, 1);
 }
 
 .close {
-  color: #E0E0E0;
-  float: right;
+  position: absolute;
+  top: 10px;
+  right: 15px;
   font-size: 24px;
-  font-weight: bold;
   cursor: pointer;
+  color: var(--text);
   transition: color 0.3s;
 }
 
-.close:hover,
-.close:focus {
-  color: #00D4FF;
+.close:hover {
+  color: var(--accent);
 }
 
 .modal-content h2 {
   text-align: center;
   margin-bottom: 20px;
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 700;
   font-size: 22px;
+  color: var(--accent);
 }
 
-.modal-content form {
-  display: flex;
-  flex-direction: column;
-}
-
-.modal-content input[type="text"],
-.modal-content input[type="password"],
-.modal-content input[type="email"] {
+.modal-content input {
   width: 100%;
-  padding: 12px 30px 12px 12px;
-  margin-bottom: 10px; /* Возвращаем расстояние между полями */
-  box-sizing: border-box;
-  border: 2px solid #5A6377;
+  padding: 12px;
+  padding-right: 40px;
+  margin-bottom: 10px;
+  border: 2px solid var(--border);
   border-radius: 6px;
-  background-color: #1A1E2D;
-  color: #E0E0E0;
+  background-color: var(--background);
+  color: var(--text);
   font-size: 16px;
-  transition: border-color 0.3s;
-  position: relative;
+  box-sizing: border-box;
+  height: 48px;
 }
 
-.modal-content input[type="text"]:focus,
-.modal-content input[type="password"]:focus,
-.modal-content input[type="email"]:focus {
-  border-color: #00D4FF;
+.modal-content input:focus {
+  border-color: var(--accent);
   outline: none;
 }
 
@@ -84,33 +87,29 @@
 .modal-content button {
   width: 100%;
   padding: 12px;
-  background: linear-gradient(135deg, #00D4FF, #C300FF);
-  color: #E0E0E0;
+  background: linear-gradient(135deg, var(--accent), #C300FF);
   border: none;
   border-radius: 6px;
-  cursor: pointer;
+  color: var(--text);
   font-size: 16px;
-  transition: box-shadow 0.3s ease, transform 0.3s ease;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.modal-content button:hover {
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
-  transform: translateY(-2px);
-}
 
 .toggle-link {
-  color: #E0E0E0;
-  text-decoration: underline;
-  cursor: pointer;
-  margin-top: 15px;
   display: block;
   text-align: center;
+  margin-top: 15px;
+  color: var(--text);
+  text-decoration: underline;
+  cursor: pointer;
   font-size: 14px;
   transition: color 0.3s;
 }
 
 .toggle-link:hover {
-  color: #00D4FF;
+  color: var(--accent);
 }
 
 .password-container {
@@ -120,66 +119,46 @@
 
 .password-toggle {
   position: absolute;
-  right: 8px;
-  top: 50%;
-  margin-top: -8px;
+  right: 12px;
+  top: calc(50% - 10px); 
   background: none !important;
-  background-color: transparent !important;
-  background-image: none !important;
+  border: none !important;
   box-shadow: none !important;
-  border: none;
-  outline: none;
-  color: #E0E0E0;
-  cursor: pointer;
-  padding: 0;
-  z-index: 1;
-  width: 20px;
-  height: 20px;
-  max-width: 20px;
-  min-width: 20px;
+  padding: 0 !important;
+  margin: 0 !important;
+  width: 16px !important;
+  height: 16px !important;
+  min-width: 16px !important;
+  min-height: 16px !important;
   display: flex;
   justify-content: center;
   align-items: center;
-  transition: none;
+  cursor: pointer;
+  transition: color 0.3s ease;
 }
 
 .password-toggle svg {
   font-size: 16px;
-  color: #E0E0E0;
+  color: var(--text-secondary);
   width: 16px !important;
   height: 16px !important;
   display: block;
-  overflow: visible;
-  fill: #E0E0E0;
+}
+
+.password-toggle:hover svg {
+  color: var(--text);
 }
 
 @media (max-width: 768px) {
   .modal-content {
     width: 90%;
-    margin: 15% auto;
     padding: 15px;
   }
-  .modal-content input[type="text"],
-  .modal-content input[type="password"],
-  .modal-content input[type="email"] {
-    padding: 10px 25px 10px 10px;
-    margin-bottom: 10px;
+  .modal-content input {
+    padding: 10px;
+    padding-right: 36px;
     font-size: 14px;
-  }
-  .password-toggle {
-    right: 6px;
-    top: 50%;
-    margin-top: -7px;
-    width: 18px;
-    height: 18px;
-    max-width: 18px;
-    min-width: 18px;
-  }
-  .password-toggle svg {
-    font-size: 14px;
-    width: 14px !important;
-    height: 14px !important;
-    fill: #E0E0E0;
+    height: 40px;
   }
   .modal-content button {
     padding: 10px;
@@ -188,35 +167,31 @@
   .modal-content h2 {
     font-size: 20px;
   }
+  .password-toggle {
+    right: 10px;
+    top: calc(50% - 7px);
+    width: 14px !important;
+    height: 14px !important;
+    min-width: 14px !important;
+    min-height: 14px !important;
+  }
+  .password-toggle svg {
+    font-size: 14px;
+    width: 14px !important;
+    height: 14px !important;
+  }
 }
 
 @media (max-width: 480px) {
   .modal-content {
     width: 95%;
-    margin: 20% auto;
     padding: 10px;
   }
-  .modal-content input[type="text"],
-  .modal-content input[type="password"],
-  .modal-content input[type="email"] {
-    padding: 8px 20px 8px 8px;
-    margin-bottom: 10px;
+  .modal-content input {
+    padding: 8px;
+    padding-right: 32px;
     font-size: 12px;
-  }
-  .password-toggle {
-    right: 4px;
-    top: 50%;
-    margin-top: -6px;
-    width: 16px;
-    height: 16px;
-    max-width: 16px;
-    min-width: 16px;
-  }
-  .password-toggle svg {
-    font-size: 12px;
-    width: 12px !important;
-    height: 12px !important;
-    fill: #E0E0E0;
+    height: 36px;
   }
   .modal-content button {
     padding: 8px;
@@ -227,5 +202,18 @@
   }
   .toggle-link {
     font-size: 12px;
+  }
+  .password-toggle {
+    right: 8px;
+    top: calc(50% - 6px);
+    width: 12px !important;
+    height: 12px !important;
+    min-width: 12px !important;
+    min-height: 12px !important;
+  }
+  .password-toggle svg {
+    font-size: 12px;
+    width: 12px !important;
+    height: 12px !important;
   }
 }

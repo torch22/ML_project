@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { FaEye, FaEyeSlash } from 'react-icons/fa'; // Иконки для пароля
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import '../styles/AuthModal.css';
 
 function AuthModal({ isOpen, onClose }) {
@@ -11,11 +11,11 @@ function AuthModal({ isOpen, onClose }) {
     name: '',
   });
   const [error, setError] = useState('');
-  const [showPassword, setShowPassword] = useState(false); // Состояние для показа/скрытия пароля
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
-    setError(''); // Сбрасываем ошибку при изменении поля
+    setError('');
   };
 
   const validateEmail = (email) => {
@@ -87,7 +87,7 @@ function AuthModal({ isOpen, onClose }) {
         initial="hidden"
         animate="visible"
         exit="exit"
-        onClick={(e) => e.stopPropagation()} // Предотвращаем закрытие при клике внутри модального окна
+        onClick={(e) => e.stopPropagation()}
       >
         <span className="close" onClick={onClose}>×</span>
         {isLogin ? (
@@ -102,7 +102,7 @@ function AuthModal({ isOpen, onClose }) {
               placeholder="Электронная почта"
               required
               className={error && !formData.email ? 'error-input' : ''}
-              autoFocus // Автофокус на поле email
+              autoFocus
             />
             <div className="password-container">
               <input
@@ -119,7 +119,7 @@ function AuthModal({ isOpen, onClose }) {
                 onClick={() => setShowPassword(!showPassword)}
                 className="password-toggle"
               >
-                {showPassword ? <FaEyeSlash /> : <FaEye />} {/* Иконки вместо текста */}
+                {showPassword ? <FaEyeSlash /> : <FaEye />}
               </button>
             </div>
             <button id="loginBtn" onClick={handleLogin}>Войти</button>
@@ -148,7 +148,7 @@ function AuthModal({ isOpen, onClose }) {
               placeholder="Электронная почта"
               required
               className={error && !formData.email ? 'error-input' : ''}
-              autoFocus // Автофокус на поле email
+              autoFocus
             />
             <div className="password-container">
               <input
@@ -165,7 +165,7 @@ function AuthModal({ isOpen, onClose }) {
                 onClick={() => setShowPassword(!showPassword)}
                 className="password-toggle"
               >
-                {showPassword ? <FaEyeSlash /> : <FaEye />} {/* Иконки вместо текста */}
+                {showPassword ? <FaEyeSlash /> : <FaEye />}
               </button>
             </div>
             <button id="registerBtn" onClick={handleRegister}>Зарегистрироваться</button>

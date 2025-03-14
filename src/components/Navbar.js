@@ -1,19 +1,60 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect, useRef } from 'react';
+import { Link, useLocation } from 'react-router-dom'; // Добавляем useLocation
 import { motion } from 'framer-motion';
-import { FaBars, FaTimes } from 'react-icons/fa';
+import { FaBars, FaSun, FaMoon } from 'react-icons/fa';
 import '../styles/Navbar.css';
 
 function Navbar({ onAuthClick }) {
-  const [isSidebarOpen, setIsSidebarOpen] = React.useState(false);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [theme, setTheme] = useState(localStorage.getItem('theme') || 'dark');
+  const justOpenedRef = useRef(false);
+  const location = useLocation(); // Получаем текущий маршрут
 
-  const toggleSidebar = () => {
-    setIsSidebarOpen(!isSidebarOpen);
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme);
+    localStorage.setItem('theme', theme);
+  }, [theme]);
+
+  const toggleTheme = () => {
+    setTheme(theme === 'dark' ? 'light' : 'dark');
   };
 
-  React.useEffect(() => {
+  const toggleSidebar = () => {
+    console.log('Toggling sidebar, new state:', !isSidebarOpen);
+    setIsSidebarOpen(!isSidebarOpen);
+    if (!isSidebarOpen) {
+      justOpenedRef.current = true;
+    }
+  };
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.innerWidth > 768) {
+        setIsScrolled(window.scrollY > 0);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('resize', handleScroll);
+    handleScroll();
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', handleScroll);
+    };
+  }, []);
+
+  useEffect(() => {
     const handleClickOutside = (event) => {
-      if (isSidebarOpen && !event.target.closest('.sidebar') && !event.target.closest('.menu-toggle')) {
+      if (justOpenedRef.current) {
+        justOpenedRef.current = false;
+        return;
+      }
+
+      if (isSidebarOpen && !event.target.closest('.sidebar') && !event.target.closest('.navbar-mobile')) {
+        console.log('Closing sidebar due to outside click');
         setIsSidebarOpen(false);
       }
     };
@@ -23,7 +64,7 @@ function Navbar({ onAuthClick }) {
   }, [isSidebarOpen]);
 
   const sidebarVariants = {
-    hidden: { x: '100%', opacity: 0 },
+    hidden: { x: '-100%', opacity: 0 },
     visible: { x: 0, opacity: 1, transition: { duration: 0.3, ease: 'easeOut' } },
   };
 
@@ -32,27 +73,55 @@ function Navbar({ onAuthClick }) {
     visible: { opacity: 0.7, transition: { duration: 0.3 } },
   };
 
+  const topNavVariants = {
+    hidden: { y: '-100%', opacity: 0 },
+    visible: { y: 0, opacity: 1, transition: { duration: 0.5, ease: 'easeOut' } },
+  };
+
+  // Проверяем, если текущий маршрут — /regression-chart, скрываем .sidebar-static
+  const isRegressionChartPage = location.pathname === '/regression-chart';
+
   return (
-    <nav>
-      <div className="navbar-desktop">
-        <div className="navbar-left">
-          <Link to="/" className="nav-link">Меню</Link>
-          <Link to="/about" className="nav-link">О продукте</Link>
-          <Link to="/materials" className="nav-link">Обучающие материалы</Link>
-        </div>
-        <div className="navbar-right">
-          <button onClick={onAuthClick} className="auth-button">Вход / Регистрация</button>
-        </div>
-      </div>
+    <>
+      {!isRegressionChartPage && ( // Условно скрываем .sidebar-static
+        <motion.div
+          className="sidebar-static"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5 }}
+        >
+          <div className="sidebar-content">
+            <nav className="sidebar-nav">
+              <Link to="/" className="sidebar-link" onClick={() => window.scrollTo(0, 0)}>
+                <span>Меню</span>
+              </Link>
+              <Link to="/about" className="sidebar-link" onClick={() => window.scrollTo(0, 0)}>
+                <span>О продукте</span>
+              </Link>
+              <Link to="/materials" className="sidebar-link" onClick={() => window.scrollTo(0, 0)}>
+                <span>Обучающие материалы</span>
+              </Link>
+            </nav>
+            <div className="sidebar-auth">
+              <button onClick={onAuthClick} className="auth-button">Вход / Регистрация</button>
+              <button onClick={toggleTheme} className="theme-toggle" aria-label="Toggle theme">
+                {theme === 'dark' ? <FaSun /> : <FaMoon />}
+              </button>
+            </div>
+          </div>
+        </motion.div>
+      )}
       <div className="navbar-mobile">
-        <div className="navbar-mobile-left">
-          <button onClick={onAuthClick} className="auth-button">Вход / Регистрация</button>
-        </div>
-        <div className="navbar-mobile-right">
-          <button className="menu-toggle" onClick={toggleSidebar} aria-label="Toggle navigation menu" aria-expanded={isSidebarOpen} aria-hidden={false}>
-            {isSidebarOpen ? <FaTimes /> : <FaBars />}
+        {!isSidebarOpen && (
+          <button
+            className="menu-toggle"
+            onClick={toggleSidebar}
+            aria-label="Toggle navigation menu"
+            style={{ zIndex: 1001 }}
+          >
+            <FaBars />
           </button>
-        </div>
+        )}
       </div>
       {isSidebarOpen && (
         <>
@@ -65,19 +134,52 @@ function Navbar({ onAuthClick }) {
             onClick={toggleSidebar}
           />
           <motion.div
-            className="sidebar"
+            className="sidebar-mobile"
             variants={sidebarVariants}
             initial="hidden"
-            animate={isSidebarOpen ? 'visible' : 'hidden'}
+            animate="visible"
             exit="hidden"
+            onClick={(e) => e.stopPropagation()}
           >
-            <Link to="/" className="sidebar-link" onClick={toggleSidebar}>Меню</Link>
-            <Link to="/about" className="sidebar-link" onClick={toggleSidebar}>О продукте</Link>
-            <Link to="/materials" className="sidebar-link" onClick={toggleSidebar}>Обучающие материалы</Link>
+            <div className="sidebar-content">
+              <nav className="sidebar-nav">
+                <Link to="/" className="sidebar-link" onClick={() => { toggleSidebar(); window.scrollTo(0, 0); }}>
+                  <span>Меню</span>
+                </Link>
+                <Link to="/about" className="sidebar-link" onClick={() => { toggleSidebar(); window.scrollTo(0, 0); }}>
+                  <span>О продукте</span>
+                </Link>
+                <Link to="/materials" className="sidebar-link" onClick={() => { toggleSidebar(); window.scrollTo(0, 0); }}>
+                  <span>Обучающие материалы</span>
+                </Link>
+              </nav>
+              <div className="sidebar-auth">
+                <button onClick={onAuthClick} className="auth-button">Вход / Регистрация</button>
+                <button onClick={toggleTheme} className="theme-toggle" aria-label="Toggle theme">
+                  {theme === 'dark' ? <FaSun /> : <FaMoon />}
+                </button>
+              </div>
+            </div>
           </motion.div>
         </>
       )}
-    </nav>
+      <motion.div
+        className="top-nav"
+        variants={topNavVariants}
+        initial="hidden"
+        animate={isScrolled ? 'visible' : 'hidden'}
+      >
+        <nav className="top-nav-content">
+          <Link to="/" className="top-nav-link" onClick={() => window.scrollTo(0, 0)}>Меню</Link>
+          <Link to="/about" className="top-nav-link" onClick={() => window.scrollTo(0, 0)}>О продукте</Link>
+          <Link to="/materials" className="top-nav-link" onClick={() => window.scrollTo(0, 0)}>Обучающие материалы</Link>
+          <button onClick={onAuthClick} className="top-auth-button">Вход / Регистрация</button>
+          <button onClick={toggleTheme} className="theme-toggle" aria-label="Toggle theme">
+            {theme === 'dark' ? <FaSun /> : <FaMoon />}
+          </button>
+        </nav>
+      </motion.div>
+    </>
   );
 }
 
