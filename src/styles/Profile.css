@@ -1,0 +1,152 @@
+.profile-wrapper {
+    min-height: 100vh; 
+    padding: 80px 20px 20px; 
+    background: var(--background); 
+    text-align: center;
+  }
+  
+  .profile-container {
+    max-width: 800px;
+    margin: 0 auto; 
+  }
+  
+  .profile-card {
+    background: var(--card-bg);
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 0 20px var(--shadow); 
+  }
+  
+  /* Темная тема */
+  [data-theme="dark"] .profile-card {
+    background: rgba(26, 30, 45, 1); 
+  }
+  
+  [data-theme="dark"] h1 {
+    color: var(--accent, #00D4FF);
+  }
+  
+  [data-theme="dark"] h2 {
+    color: var(--text, #E0E0E0);
+  }
+  
+  [data-theme="dark"] p {
+    color: var(--text-secondary, #D0D0D0);
+  }
+  
+  [data-theme="dark"] .logout-btn {
+    background: linear-gradient(135deg, var(--accent, #00D4FF), #C300FF);
+    color: var(--text, #E0E0E0);
+  }
+  
+  /* Светлая тема */
+  [data-theme="light"] .profile-card {
+    background: var(--card-bg, rgba(255, 255, 255, 0.9));
+  }
+  
+  [data-theme="light"] h1 {
+    color: var(--accent, #FF6F61);
+  }
+  
+  [data-theme="light"] h2 {
+    color: var(--text, #333333);
+  }
+  
+  [data-theme="light"] p {
+    color: var(--text-secondary, #666666);
+  }
+  
+  [data-theme="light"] .logout-btn {
+    background: linear-gradient(135deg, var(--accent, #FF6F61), #C300FF);
+    color: var(--text, #333333);
+  }
+  
+  /* Общие стили */
+  .profile-avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-bottom: 15px;
+  }
+  
+  h1 {
+    font-family: 'Orbitron', sans-serif; 
+    font-weight: 700;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+  }
+  
+  h2 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.5rem;
+    margin: 10px 0;
+  }
+  
+  p {
+    font-size: 1rem;
+    font-family: 'Inter', sans-serif; 
+  }
+  
+  .logout-btn {
+    width: 100%;
+    max-width: 200px;
+    padding: 12px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    font-family: 'Inter', sans-serif;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .logout-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 15px rgba(0, 212, 255, 0.8); 
+  }
+  
+  /* Адаптивность */
+  @media (max-width: 768px) {
+    .profile-wrapper {
+      padding: 60px 15px 15px; 
+    }
+  
+    h1 {
+      font-size: 2rem;
+    }
+  
+    h2 {
+      font-size: 1.3rem;
+    }
+  
+    p {
+      font-size: 0.9rem;
+    }
+  
+    .logout-btn {
+      padding: 10px;
+      font-size: 14px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .profile-wrapper {
+      padding: 50px 10px 10px;
+    }
+  
+    h1 {
+      font-size: 1.5rem;
+    }
+  
+    h2 {
+      font-size: 1.1rem;
+    }
+  
+    p {
+      font-size: 0.8rem;
+    }
+  
+    .logout-btn {
+      padding: 8px;
+      font-size: 12px;
+    }
+  }

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom'; 
 import '../styles/AuthModal.css';
 
 function AuthModal({ isOpen, onClose }) {
@@ -12,6 +13,7 @@ function AuthModal({ isOpen, onClose }) {
   });
   const [error, setError] = useState('');
   const [showPassword, setShowPassword] = useState(false);
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -33,10 +35,13 @@ function AuthModal({ isOpen, onClose }) {
       setError('Пожалуйста, введите корректный email');
       return;
     }
+    // Симуляция входа
+    const user = { name: formData.email.split('@')[0], email: formData.email }; 
+    localStorage.setItem('user', JSON.stringify(user)); 
     console.log('Вход:', formData.email, formData.password);
-    alert('Вход успешно выполнен!');
     onClose();
     setFormData({ email: '', password: '', name: '' });
+    navigate('/profile'); 
   };
 
   const handleRegister = (e) => {
@@ -53,10 +58,13 @@ function AuthModal({ isOpen, onClose }) {
       setError('Пароль должен быть минимум 6 символов');
       return;
     }
+    // Симуляция регистрации
+    const user = { name: formData.name, email: formData.email };
+    localStorage.setItem('user', JSON.stringify(user)); 
     console.log('Регистрация:', formData.name, formData.email, formData.password);
-    alert('Регистрация успешно выполнена!');
     onClose();
     setFormData({ email: '', password: '', name: '' });
+    navigate('/profile'); 
   };
 
   const modalVariants = {

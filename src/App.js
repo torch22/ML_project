@@ -7,6 +7,7 @@ import Materials from './pages/Materials';
 import Navbar from './components/Navbar';
 import AuthModal from './components/AuthModal';
 import RegressionChart from './pages/RegressionChart';
+import Profile from './pages/Profile';
 import './App.css';
 
 function App() {
@@ -57,6 +58,7 @@ function App() {
         <Route path="/about" element={<About onAuthClick={handleAuthClick} />} />
         <Route path="/materials" element={<Materials onAuthClick={handleAuthClick} />} />
         <Route path="/regression-chart" element={<RegressionChart onAuthClick={handleAuthClick} />} />
+        <Route path="/profile" element={<Profile />} />
       </Routes>
       <AuthModal isOpen={isModalOpen} onClose={handleAuthClose} />
     </Router>

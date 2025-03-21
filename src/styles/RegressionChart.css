@@ -1,6 +1,6 @@
 .regression-chart-wrapper {
     min-height: 100vh;
-    padding: 80px 20px 20px; /* Добавляем отступ сверху для учета высоты Navbar */
+    padding: 80px 20px 20px; 
     background: var(--background);
     text-align: center;
   }
@@ -61,7 +61,7 @@
   
   @media (max-width: 768px) {
     .regression-chart-wrapper {
-      padding-top: 60px; /* Уменьшаем отступ для мобильных устройств */
+      padding-top: 60px; 
     }
   
     canvas {

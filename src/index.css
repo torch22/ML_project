@@ -9,10 +9,10 @@ body {
 html, body {
   margin: 0;
   padding: 0;
-  background: #1A1E2D; /* Соответствует фону страниц */
+  background: #1A1E2D; 
   overflow-x: hidden;
   min-height: 100vh;
-  overscroll-behavior-y: none; /* Запрещает "отскок" на iOS */
+  overscroll-behavior-y: none; 
 }
 
 h1, h2, h3, h4, h5, h6 {

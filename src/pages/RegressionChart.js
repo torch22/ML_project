@@ -87,14 +87,14 @@ const RegressionChart = ({ onAuthClick }) => {
 
     const updateDataset = (dataset, equation) => {
       dataset.data = [];
-      for (let x = -5; x <= 5; x += 1) { // Уменьшаем диапазон и увеличиваем шаг
+      for (let x = -5; x <= 5; x += 1) {
         let y;
         if (equation.length === 2) {
-          y = equation[0] * x + equation[1]; // Линейная
+          y = equation[0] * x + equation[1]; 
         } else if (equation.length === 3) {
-          y = equation[0] * x * x + equation[1] * x + equation[2]; // Квадратичная
+          y = equation[0] * x * x + equation[1] * x + equation[2]; 
         } else {
-          y = equation[0] * Math.exp(equation[1] * x); // Экспоненциальная
+          y = equation[0] * Math.exp(equation[1] * x); 
         }
         dataset.data.push({ x, y });
       }

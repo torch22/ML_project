@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Link, useLocation } from 'react-router-dom'; // Добавляем useLocation
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { FaBars, FaSun, FaMoon } from 'react-icons/fa';
+import avatarPlaceholder from '../assets/avatar_default.JPG'; // Предполагаем аватар
 import '../styles/Navbar.css';
 
 function Navbar({ onAuthClick }) {
@@ -9,7 +10,9 @@ function Navbar({ onAuthClick }) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [theme, setTheme] = useState(localStorage.getItem('theme') || 'dark');
   const justOpenedRef = useRef(false);
-  const location = useLocation(); // Получаем текущий маршрут
+  const location = useLocation();
+  const navigate = useNavigate();
+  const user = JSON.parse(localStorage.getItem('user')); // Проверяем авторизацию
 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme);
@@ -26,6 +29,19 @@ function Navbar({ onAuthClick }) {
     if (!isSidebarOpen) {
       justOpenedRef.current = true;
     }
+  };
+
+  const handleUserClick = () => {
+    if (user) {
+      navigate('/profile'); // Переход на профиль, если авторизован
+    } else {
+      onAuthClick(); // Открытие модалки, если не авторизован
+    }
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem('user');
+    navigate('/');
   };
 
   useEffect(() => {
@@ -78,12 +94,11 @@ function Navbar({ onAuthClick }) {
     visible: { y: 0, opacity: 1, transition: { duration: 0.5, ease: 'easeOut' } },
   };
 
-  // Проверяем, если текущий маршрут — /regression-chart, скрываем .sidebar-static
-  const isRegressionChartPage = location.pathname === '/regression-chart';
+  const isSpecialPage = location.pathname === '/regression-chart' || location.pathname === '/profile';
 
   return (
     <>
-      {!isRegressionChartPage && ( // Условно скрываем .sidebar-static
+      {!isSpecialPage && (
         <motion.div
           className="sidebar-static"
           initial={{ opacity: 0 }}
@@ -103,7 +118,17 @@ function Navbar({ onAuthClick }) {
               </Link>
             </nav>
             <div className="sidebar-auth">
-              <button onClick={onAuthClick} className="auth-button">Вход / Регистрация</button>
+              {user ? (
+                <div className="user-section">
+                  <div className="user-info" onClick={handleUserClick}>
+                    <img src={avatarPlaceholder} alt="Аватар" className="user-avatar" />
+                    <span>{user.name}</span>
+                  </div>
+                  <button onClick={handleLogout} className="logout-button">Выйти</button>
+                </div>
+              ) : (
+                <button onClick={handleUserClick} className="auth-button">Вход / Регистрация</button>
+              )}
               <button onClick={toggleTheme} className="theme-toggle" aria-label="Toggle theme">
                 {theme === 'dark' ? <FaSun /> : <FaMoon />}
               </button>
@@ -154,7 +179,17 @@ function Navbar({ onAuthClick }) {
                 </Link>
               </nav>
               <div className="sidebar-auth">
-                <button onClick={onAuthClick} className="auth-button">Вход / Регистрация</button>
+                {user ? (
+                  <div className="user-section">
+                    <div className="user-info" onClick={handleUserClick}>
+                      <img src={avatarPlaceholder} alt="Аватар" className="user-avatar" />
+                      <span>{user.name}</span>
+                    </div>
+                    <button onClick={handleLogout} className="logout-button">Выйти</button>
+                  </div>
+                ) : (
+                  <button onClick={handleUserClick} className="auth-button">Вход / Регистрация</button>
+                )}
                 <button onClick={toggleTheme} className="theme-toggle" aria-label="Toggle theme">
                   {theme === 'dark' ? <FaSun /> : <FaMoon />}
                 </button>
@@ -164,16 +199,26 @@ function Navbar({ onAuthClick }) {
         </>
       )}
       <motion.div
-        className="top-nav"
+        className={`top-nav ${isSpecialPage ? 'static' : ''}`}
         variants={topNavVariants}
         initial="hidden"
-        animate={isScrolled ? 'visible' : 'hidden'}
+        animate={isSpecialPage ? 'visible' : (isScrolled ? 'visible' : 'hidden')}
       >
         <nav className="top-nav-content">
           <Link to="/" className="top-nav-link" onClick={() => window.scrollTo(0, 0)}>Меню</Link>
           <Link to="/about" className="top-nav-link" onClick={() => window.scrollTo(0, 0)}>О продукте</Link>
           <Link to="/materials" className="top-nav-link" onClick={() => window.scrollTo(0, 0)}>Обучающие материалы</Link>
-          <button onClick={onAuthClick} className="top-auth-button">Вход / Регистрация</button>
+          {user ? (
+            <div className="user-section">
+              <div className="user-info" onClick={handleUserClick}>
+                <img src={avatarPlaceholder} alt="Аватар" className="user-avatar" />
+                <span>{user.name}</span>
+              </div>
+              <button onClick={handleLogout} className="logout-button">Выйти</button>
+            </div>
+          ) : (
+            <button onClick={handleUserClick} className="top-auth-button">Вход / Регистрация</button>
+          )}
           <button onClick={toggleTheme} className="theme-toggle" aria-label="Toggle theme">
             {theme === 'dark' ? <FaSun /> : <FaMoon />}
           </button>
