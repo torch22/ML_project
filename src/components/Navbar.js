@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { FaBars, FaSun, FaMoon } from 'react-icons/fa';
-import avatarPlaceholder from '../assets/avatar_default.JPG'; // Предполагаем аватар
+import avatarPlaceholder from '../assets/avatar_default.JPG';
 import '../styles/Navbar.css';
 
 function Navbar({ onAuthClick }) {
@@ -12,7 +12,7 @@ function Navbar({ onAuthClick }) {
   const justOpenedRef = useRef(false);
   const location = useLocation();
   const navigate = useNavigate();
-  const user = JSON.parse(localStorage.getItem('user')); // Проверяем авторизацию
+  const user = JSON.parse(localStorage.getItem('user'));
 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme);
@@ -33,9 +33,9 @@ function Navbar({ onAuthClick }) {
 
   const handleUserClick = () => {
     if (user) {
-      navigate('/profile'); // Переход на профиль, если авторизован
+      navigate('/profile');
     } else {
-      onAuthClick(); // Открытие модалки, если не авторизован
+      onAuthClick();
     }
   };
 
@@ -49,7 +49,7 @@ function Navbar({ onAuthClick }) {
       if (window.innerWidth > 768) {
         setIsScrolled(window.scrollY > 0);
       } else {
-        setIsScrolled(false);
+        setIsScrolled(false); // На мобильных устройствах top-nav не нужен
       }
     };
 
@@ -94,11 +94,10 @@ function Navbar({ onAuthClick }) {
     visible: { y: 0, opacity: 1, transition: { duration: 0.5, ease: 'easeOut' } },
   };
 
-  const isSpecialPage = location.pathname === '/regression-chart' || location.pathname === '/profile';
-
   return (
     <>
-      {!isSpecialPage && (
+      {/* Сайдбар для десктопа */}
+      {location.pathname !== '/regression-chart' && location.pathname !== '/profile' && (
         <motion.div
           className="sidebar-static"
           initial={{ opacity: 0 }}
@@ -136,6 +135,7 @@ function Navbar({ onAuthClick }) {
           </div>
         </motion.div>
       )}
+      {/* Мобильный сайдбар */}
       <div className="navbar-mobile">
         {!isSidebarOpen && (
           <button
@@ -177,6 +177,9 @@ function Navbar({ onAuthClick }) {
                 <Link to="/materials" className="sidebar-link" onClick={() => { toggleSidebar(); window.scrollTo(0, 0); }}>
                   <span>Обучающие материалы</span>
                 </Link>
+                <Link to="/regression-chart" className="sidebar-link" onClick={() => { toggleSidebar(); window.scrollTo(0, 0); }}>
+                  <span>Регрессия</span>
+                </Link>
               </nav>
               <div className="sidebar-auth">
                 {user ? (
@@ -198,16 +201,19 @@ function Navbar({ onAuthClick }) {
           </motion.div>
         </>
       )}
+      {/* Top-nav только для десктопа */}
       <motion.div
-        className={`top-nav ${isSpecialPage ? 'static' : ''}`}
+        className="top-nav"
         variants={topNavVariants}
         initial="hidden"
-        animate={isSpecialPage ? 'visible' : (isScrolled ? 'visible' : 'hidden')}
+        animate={isScrolled ? 'visible' : 'hidden'}
       >
         <nav className="top-nav-content">
           <Link to="/" className="top-nav-link" onClick={() => window.scrollTo(0, 0)}>Меню</Link>
           <Link to="/about" className="top-nav-link" onClick={() => window.scrollTo(0, 0)}>О продукте</Link>
           <Link to="/materials" className="top-nav-link" onClick={() => window.scrollTo(0, 0)}>Обучающие материалы</Link>
+          <Link to="/regression-chart" className="top-nav-link" onClick={() => window.scrollTo(0, 0)}>Регрессия</Link>
+          <Link to="/profile" className="top-nav-link" onClick={() => window.scrollTo(0, 0)}>Профиль</Link>
           {user ? (
             <div className="user-section">
               <div className="user-info" onClick={handleUserClick}>
