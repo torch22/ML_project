@@ -9,6 +9,7 @@ function Navbar({ onAuthClick }) {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [theme, setTheme] = useState(localStorage.getItem('theme') || 'dark');
+  const [isDesktop, setIsDesktop] = useState(window.innerWidth > 768);
   const justOpenedRef = useRef(false);
   const location = useLocation();
   const navigate = useNavigate();
@@ -45,20 +46,22 @@ function Navbar({ onAuthClick }) {
   };
 
   useEffect(() => {
-    const handleScroll = () => {
-      if (window.innerWidth > 768) {
+    const handleScrollAndResize = () => {
+      const desktop = window.innerWidth > 768;
+      setIsDesktop(desktop);
+      if (desktop) {
         setIsScrolled(window.scrollY > 0);
       } else {
-        setIsScrolled(false); // На мобильных устройствах top-nav не нужен
+        setIsScrolled(false);
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
-    window.addEventListener('resize', handleScroll);
-    handleScroll();
+    window.addEventListener('scroll', handleScrollAndResize);
+    window.addEventListener('resize', handleScrollAndResize);
+    handleScrollAndResize();
     return () => {
-      window.removeEventListener('scroll', handleScroll);
-      window.removeEventListener('resize', handleScroll);
+      window.removeEventListener('scroll', handleScrollAndResize);
+      window.removeEventListener('resize', handleScrollAndResize);
     };
   }, []);
 
@@ -94,10 +97,16 @@ function Navbar({ onAuthClick }) {
     visible: { y: 0, opacity: 1, transition: { duration: 0.5, ease: 'easeOut' } },
   };
 
+  const isSpecialPage = location.pathname === '/regression-chart' || location.pathname === '/profile';
+
+  const displayName = user
+    ? `${user.firstName || ''}${user.lastName ? ` ${user.lastName[0]}.` : ''}`.trim() || user.name || 'Пользователь'
+    : 'Пользователь';
+
   return (
     <>
-      {/* Сайдбар для десктопа */}
-      {location.pathname !== '/regression-chart' && location.pathname !== '/profile' && (
+      {/* Сайдбар для десктопа на обычных страницах */}
+      {!isSpecialPage && isDesktop && (
         <motion.div
           className="sidebar-static"
           initial={{ opacity: 0 }}
@@ -120,8 +129,8 @@ function Navbar({ onAuthClick }) {
               {user ? (
                 <div className="user-section">
                   <div className="user-info" onClick={handleUserClick}>
-                    <img src={avatarPlaceholder} alt="Аватар" className="user-avatar" />
-                    <span>{user.name}</span>
+                    <img src={user.avatar || avatarPlaceholder} alt="Аватар" className="user-avatar" />
+                    <span>{displayName}</span>
                   </div>
                   <button onClick={handleLogout} className="logout-button">Выйти</button>
                 </div>
@@ -136,19 +145,21 @@ function Navbar({ onAuthClick }) {
         </motion.div>
       )}
       {/* Мобильный сайдбар */}
-      <div className="navbar-mobile">
-        {!isSidebarOpen && (
-          <button
-            className="menu-toggle"
-            onClick={toggleSidebar}
-            aria-label="Toggle navigation menu"
-            style={{ zIndex: 1001 }}
-          >
-            <FaBars />
-          </button>
-        )}
-      </div>
-      {isSidebarOpen && (
+      {!isDesktop && (
+        <div className="navbar-mobile">
+          {!isSidebarOpen && (
+            <button
+              className="menu-toggle"
+              onClick={toggleSidebar}
+              aria-label="Toggle navigation menu"
+              style={{ zIndex: 1001 }}
+            >
+              <FaBars />
+            </button>
+          )}
+        </div>
+      )}
+      {isSidebarOpen && !isDesktop && (
         <>
           <motion.div
             className="sidebar-overlay"
@@ -177,16 +188,13 @@ function Navbar({ onAuthClick }) {
                 <Link to="/materials" className="sidebar-link" onClick={() => { toggleSidebar(); window.scrollTo(0, 0); }}>
                   <span>Обучающие материалы</span>
                 </Link>
-                <Link to="/regression-chart" className="sidebar-link" onClick={() => { toggleSidebar(); window.scrollTo(0, 0); }}>
-                  <span>Регрессия</span>
-                </Link>
               </nav>
               <div className="sidebar-auth">
                 {user ? (
                   <div className="user-section">
                     <div className="user-info" onClick={handleUserClick}>
-                      <img src={avatarPlaceholder} alt="Аватар" className="user-avatar" />
-                      <span>{user.name}</span>
+                      <img src={user.avatar || avatarPlaceholder} alt="Аватар" className="user-avatar" />
+                      <span>{displayName}</span>
                     </div>
                     <button onClick={handleLogout} className="logout-button">Выйти</button>
                   </div>
@@ -201,35 +209,64 @@ function Navbar({ onAuthClick }) {
           </motion.div>
         </>
       )}
-      {/* Top-nav только для десктопа */}
-      <motion.div
-        className="top-nav"
-        variants={topNavVariants}
-        initial="hidden"
-        animate={isScrolled ? 'visible' : 'hidden'}
-      >
-        <nav className="top-nav-content">
-          <Link to="/" className="top-nav-link" onClick={() => window.scrollTo(0, 0)}>Меню</Link>
-          <Link to="/about" className="top-nav-link" onClick={() => window.scrollTo(0, 0)}>О продукте</Link>
-          <Link to="/materials" className="top-nav-link" onClick={() => window.scrollTo(0, 0)}>Обучающие материалы</Link>
-          <Link to="/regression-chart" className="top-nav-link" onClick={() => window.scrollTo(0, 0)}>Регрессия</Link>
-          <Link to="/profile" className="top-nav-link" onClick={() => window.scrollTo(0, 0)}>Профиль</Link>
-          {user ? (
-            <div className="user-section">
-              <div className="user-info" onClick={handleUserClick}>
-                <img src={avatarPlaceholder} alt="Аватар" className="user-avatar" />
-                <span>{user.name}</span>
+      {/* Top-nav для десктопа динамический */}
+      {!isSpecialPage && isDesktop && (
+        <motion.div
+          className="top-nav"
+          variants={topNavVariants}
+          initial="hidden"
+          animate={isScrolled ? 'visible' : 'hidden'}
+        >
+          <nav className="top-nav-content">
+            <Link to="/" className="top-nav-link" onClick={() => window.scrollTo(0, 0)}>Меню</Link>
+            <Link to="/about" className="top-nav-link" onClick={() => window.scrollTo(0, 0)}>О продукте</Link>
+            <Link to="/materials" className="top-nav-link" onClick={() => window.scrollTo(0, 0)}>Обучающие материалы</Link>
+            {user ? (
+              <div className="user-section">
+                <div className="user-info" onClick={handleUserClick}>
+                  <img src={user.avatar || avatarPlaceholder} alt="Аватар" className="user-avatar" />
+                  <span>{displayName}</span>
+                </div>
+                <button onClick={handleLogout} className="logout-button">Выйти</button>
               </div>
-              <button onClick={handleLogout} className="logout-button">Выйти</button>
-            </div>
-          ) : (
-            <button onClick={handleUserClick} className="top-auth-button">Вход / Регистрация</button>
-          )}
-          <button onClick={toggleTheme} className="theme-toggle" aria-label="Toggle theme">
-            {theme === 'dark' ? <FaSun /> : <FaMoon />}
-          </button>
-        </nav>
-      </motion.div>
+            ) : (
+              <button onClick={handleUserClick} className="top-auth-button">Вход / Регистрация</button>
+            )}
+            <button onClick={toggleTheme} className="theme-toggle" aria-label="Toggle theme">
+              {theme === 'dark' ? <FaSun /> : <FaMoon />}
+            </button>
+          </nav>
+        </motion.div>
+      )}
+      {/* Статичный top-nav */}
+      {isSpecialPage && isDesktop && (
+        <motion.div
+          className="top-nav static"
+          variants={topNavVariants}
+          initial="hidden"
+          animate="visible"
+        >
+          <nav className="top-nav-content">
+            <Link to="/" className="top-nav-link" onClick={() => window.scrollTo(0, 0)}>Меню</Link>
+            <Link to="/about" className="top-nav-link" onClick={() => window.scrollTo(0, 0)}>О продукте</Link>
+            <Link to="/materials" className="top-nav-link" onClick={() => window.scrollTo(0, 0)}>Обучающие материалы</Link>
+            {user ? (
+              <div className="user-section">
+                <div className="user-info" onClick={handleUserClick}>
+                  <img src={user.avatar || avatarPlaceholder} alt="Аватар" className="user-avatar" />
+                  <span>{displayName}</span>
+                </div>
+                <button onClick={handleLogout} className="logout-button">Выйти</button>
+              </div>
+            ) : (
+              <button onClick={handleUserClick} className="top-auth-button">Вход / Регистрация</button>
+            )}
+            <button onClick={toggleTheme} className="theme-toggle" aria-label="Toggle theme">
+              {theme === 'dark' ? <FaSun /> : <FaMoon />}
+            </button>
+          </nav>
+        </motion.div>
+      )}
     </>
   );
 }

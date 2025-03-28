@@ -1,98 +1,118 @@
 .profile-wrapper {
-    min-height: 100vh; 
-    padding: 80px 20px 20px; 
-    background: var(--background); 
-    text-align: center;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--background);
+    padding-top: 60px; /* Учитываем высоту статичного навбара */
   }
   
   .profile-container {
-    max-width: 800px;
-    margin: 0 auto; 
-  }
-  
-  .profile-card {
-    background: var(--card-bg);
+    max-width: 500px;
+    width: 100%;
     padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0 0 20px var(--shadow); 
+    background: var(--card-bg);
+    border-radius: 15px;
+    box-shadow: 0 0 10px var(--shadow);
+    text-align: center;
   }
   
-  /* Темная тема */
-  [data-theme="dark"] .profile-card {
-    background: rgba(26, 30, 45, 1); 
-  }
-  
-  [data-theme="dark"] h1 {
-    color: var(--accent, #00D4FF);
-  }
-  
-  [data-theme="dark"] h2 {
-    color: var(--text, #E0E0E0);
-  }
-  
-  [data-theme="dark"] p {
-    color: var(--text-secondary, #D0D0D0);
-  }
-  
-  [data-theme="dark"] .logout-btn {
-    background: linear-gradient(135deg, var(--accent, #00D4FF), #C300FF);
-    color: var(--text, #E0E0E0);
-  }
-  
-  /* Светлая тема */
-  [data-theme="light"] .profile-card {
-    background: var(--card-bg, rgba(255, 255, 255, 0.9));
-  }
-  
-  [data-theme="light"] h1 {
-    color: var(--accent, #FF6F61);
-  }
-  
-  [data-theme="light"] h2 {
-    color: var(--text, #333333);
-  }
-  
-  [data-theme="light"] p {
-    color: var(--text-secondary, #666666);
-  }
-  
-  [data-theme="light"] .logout-btn {
-    background: linear-gradient(135deg, var(--accent, #FF6F61), #C300FF);
-    color: var(--text, #333333);
-  }
-  
-  /* Общие стили */
-  .profile-avatar {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    margin-bottom: 15px;
-  }
-  
-  h1 {
-    font-family: 'Orbitron', sans-serif; 
-    font-weight: 700;
-    font-size: 2.5rem;
+  .profile-container h1 {
+    color: var(--text);
     margin-bottom: 20px;
   }
   
-  h2 {
-    font-family: 'Orbitron', sans-serif;
-    font-size: 1.5rem;
-    margin: 10px 0;
+  .profile-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
   }
   
-  p {
-    font-size: 1rem;
-    font-family: 'Inter', sans-serif; 
+  .avatar-container {
+    position: relative;
+    cursor: pointer; /* Указываем, что аватар кликабелен */
+  }
+  
+  .profile-avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    transition: opacity 0.3s ease; /* Плавное затемнение при наведении */
+  }
+  
+  .avatar-container:hover .profile-avatar {
+    opacity: 0.7; /* Затемнение при наведении */
+  }
+  
+  .edit-pencil {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    color: var(--accent);
+    font-size: 18px;
+    background: var(--card-bg);
+    padding: 4px;
+    border-radius: 50%;
+    transition: transform 0.3s ease, color 0.3s ease;
+  }
+  
+  .avatar-container:hover .edit-pencil {
+    transform: scale(1.2); /* Увеличение карандаша при наведении */
+    color: #C300FF;
+  }
+  
+  .avatar-input-hidden {
+    display: none; /* Скрываем input */
+  }
+  
+  .profile-field {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 400px;
+    color: var(--text);
+    font-size: 16px;
+  }
+  
+  .profile-field span:first-child {
+    font-weight: bold;
+    color: var(--text-secondary);
+  }
+  
+  .profile-field select,
+  .profile-field input,
+  .profile-field textarea {
+    width: 60%;
+    padding: 8px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: var(--background);
+    color: var(--text);
+    font-size: 14px;
+    font-family: 'Inter', sans-serif;
+    transition: border-color 0.3s ease;
+  }
+  
+  .profile-field textarea {
+    resize: vertical;
+    min-height: 60px;
+  }
+  
+  .profile-field select:focus,
+  .profile-field input:focus,
+  .profile-field textarea:focus {
+    outline: none;
+    border-color: var(--accent);
   }
   
   .logout-btn {
-    width: 100%;
-    max-width: 200px;
-    padding: 12px;
+    background: linear-gradient(135deg, var(--accent), #C300FF);
+    color: var(--text);
     border: none;
     border-radius: 6px;
+    padding: 10px 20px;
     cursor: pointer;
     font-size: 16px;
     font-family: 'Inter', sans-serif;
@@ -101,52 +121,117 @@
   
   .logout-btn:hover {
     transform: translateY(-2px);
-    box-shadow: 0 0 15px rgba(0, 212, 255, 0.8); 
+    box-shadow: 0 0 15px rgba(0, 212, 255, 0.8);
+  }
+  
+  .edit-btn {
+    background: none;
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    border-radius: 6px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    font-family: 'Inter', sans-serif;
+    transition: background 0.3s ease, color 0.3s ease;
+  }
+  
+  .edit-btn:hover {
+    background: var(--accent);
+    color: var(--text);
   }
   
   /* Адаптивность */
   @media (max-width: 768px) {
     .profile-wrapper {
-      padding: 60px 15px 15px; 
+      padding-top: 50px;
     }
   
-    h1 {
-      font-size: 2rem;
+    .profile-container {
+      margin: 20px;
+      padding: 15px;
     }
   
-    h2 {
-      font-size: 1.3rem;
+    .profile-avatar {
+      width: 100px;
+      height: 100px;
     }
   
-    p {
-      font-size: 0.9rem;
+    .edit-pencil {
+      font-size: 16px;
+      bottom: 8px;
+      right: 8px;
     }
   
-    .logout-btn {
-      padding: 10px;
+    .profile-field {
+      font-size: 14px;
+    }
+  
+    .profile-field select,
+    .profile-field input,
+    .profile-field textarea {
+      font-size: 12px;
+      padding: 6px;
+    }
+  
+    .logout-btn,
+    .edit-btn {
+      padding: 8px 15px;
       font-size: 14px;
     }
   }
   
   @media (max-width: 480px) {
     .profile-wrapper {
-      padding: 50px 10px 10px;
+      padding-top: 40px;
     }
   
-    h1 {
-      font-size: 1.5rem;
+    .profile-container {
+      margin: 10px;
+      padding: 10px;
     }
   
-    h2 {
-      font-size: 1.1rem;
+    .profile-container h1 {
+      font-size: 20px;
     }
   
-    p {
-      font-size: 0.8rem;
+    .profile-avatar {
+      width: 80px;
+      height: 80px;
     }
   
-    .logout-btn {
-      padding: 8px;
+    .edit-pencil {
+      font-size: 14px;
+      bottom: 6px;
+      right: 6px;
+    }
+  
+    .profile-card h2 {
+      font-size: 18px;
+    }
+  
+    .profile-card p {
+      font-size: 14px;
+    }
+  
+    .profile-field {
+      font-size: 12px;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 5px;
+    }
+  
+    .profile-field select,
+    .profile-field input,
+    .profile-field textarea {
+      width: 100%;
+      font-size: 12px;
+      padding: 6px;
+    }
+  
+    .logout-btn,
+    .edit-btn {
+      padding: 6px 12px;
       font-size: 12px;
     }
   }

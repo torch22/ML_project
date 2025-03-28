@@ -247,10 +247,11 @@
   border-color: var(--accent);
 }
 
+
 /* Адаптивность */
 @media (max-width: 768px) {
   .sidebar-static {
-    display: none;
+    display: none; 
   }
   .navbar-mobile {
     display: block;
@@ -265,9 +266,6 @@
   .auth-button {
     padding: 8px 12px;
     font-size: 14px;
-  }
-  .top-nav {
-    display: none;
   }
   .top-nav-content {
     padding: 8px 15px;
@@ -295,53 +293,5 @@
   }
   .user-section {
     gap: 8px;
-  }
-}
-
-@media (max-width: 480px) {
-  .navbar-mobile {
-    top: 10px;
-    left: 10px;
-  }
-  .menu-toggle {
-    font-size: 18px;
-  }
-  .sidebar-mobile .sidebar-content {
-    width: 140px;
-  }
-  .sidebar-link {
-    font-size: 12px;
-    padding: 8px 10px;
-  }
-  .auth-button {
-    padding: 6px 10px;
-    font-size: 12px;
-  }
-  .top-nav-content {
-    padding: 5px 10px;
-    gap: 10px;
-  }
-  .top-nav-link {
-    font-size: 12px;
-  }
-  .top-auth-button {
-    padding: 5px 10px;
-    font-size: 12px;
-  }
-  .user-info {
-    font-size: 12px;
-    padding: 5px 10px;
-    max-width: 100px;
-  }
-  .user-avatar {
-    width: 18px;
-    height: 18px;
-  }
-  .logout-button {
-    padding: 4px 8px;
-    font-size: 10px;
-  }
-  .user-section {
-    gap: 6px;
   }
 }
