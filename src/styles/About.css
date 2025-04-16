@@ -1,0 +1,193 @@
+/* About.css */
+.about-wrapper {
+  min-height: 100vh;
+  padding: 20px;
+  padding-bottom: 60px;
+  background: var(--background);
+}
+
+.about-hero {
+  text-align: center;
+  padding: 50px 20px;
+  min-height: 60vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.about-content {
+  max-width: 800px;
+  margin: 0 auto;
+  color: var(--text);
+}
+
+.about-hero h1 {
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 700;
+  font-size: 3rem;
+  margin-bottom: 20px;
+}
+
+.about-hero p {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+}
+
+.timeline-section,
+.team-section,
+.contact-section {
+  padding: 40px 20px;
+  background: var(--background);
+}
+
+.timeline-section h2,
+.contact-section h2,
+.team-section h2 {
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 700;
+  font-size: 2.2rem;
+  color: var(--accent);
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.timeline-simple {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 800px;
+  margin: 0 auto;
+  padding-left: 20px;
+  border-left: 2px solid var(--border);
+  gap: 30px;
+}
+
+.timeline-entry {
+  position: relative;
+  padding-left: 20px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  width: 100%;
+  max-width: 600px;
+  backdrop-filter: blur(6px);
+  padding: 16px;
+}
+
+.timeline-entry::before {
+  content: '';
+  position: absolute;
+  top: 20px;
+  left: -9px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--accent);
+  border: 2px solid var(--background);
+}
+
+.timeline-year {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 6px;
+}
+
+.timeline-desc {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1rem;
+  color: var(--text-secondary);
+  background: rgba(255, 255, 255, 0.03);
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+}
+
+.contact-item a {
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.contact-item a:hover {
+  color: var(--accent);
+}
+
+.team-section p {
+  text-align: center;
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  margin-bottom: 20px;
+}
+
+.team-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.team-member {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 16px;
+  text-align: center;
+  width: 180px;
+  backdrop-filter: blur(6px);
+}
+
+.team-placeholder {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 10px;
+  border-radius: 50%;
+  background: #5a6377;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--text);
+}
+
+.team-member h3 {
+  font-size: 1.1rem;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+
+.team-member p {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+@media (max-width: 768px) {
+  .about-hero h1 {
+    font-size: 2.2rem;
+  }
+
+  .timeline-year {
+    font-size: 1.1rem;
+  }
+
+  .timeline-desc,
+  .contact-item,
+  .team-member p {
+    font-size: 0.9rem;
+  }
+}

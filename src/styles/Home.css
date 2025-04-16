@@ -1,0 +1,133 @@
+/* pages/Home.css */
+.home-wrapper {
+  padding: 120px 40px 40px;
+  background-color: var(--background);
+}
+
+.hero {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto 80px;
+}
+
+.hero h1 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+  color: var(--text);
+}
+
+.hero p {
+  color: var(--text-secondary);
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+}
+
+.hero button {
+  padding: 12px 24px;
+  font-size: 16px;
+  color: var(--text);
+  background-color: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  backdrop-filter: blur(10px);
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.hero button:hover {
+  background-color: rgba(255, 255, 255, 0.08);
+}
+
+.features {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.feature-card {
+  background: var(--card-bg);
+  padding: 20px;
+  border-radius: 12px;
+  width: 280px;
+  text-align: center;
+  box-shadow: 0 4px 12px var(--shadow);
+  transition: transform 0.3s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-6px);
+}
+
+.feature-card h3 {
+  color: var(--text);
+  margin-bottom: 10px;
+  font-size: 1.4rem;
+}
+
+.feature-card p {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+}
+
+.auth-card,
+.profile-container,
+.regression-container {
+  flex-direction: column;
+  padding: 20px 15px;
+}
+
+.navbar-links {
+  right: 10px;
+  left: 10px;
+  width: auto;
+}
+
+.footer {
+  flex-direction: column;
+  text-align: center;
+  gap: 20px;
+}
+
+@media (max-width: 1200px) {
+  .auth-card,
+  .profile-container,
+  .regression-container {
+    width: 95%;
+    margin: 0 auto;
+    padding: 20px;
+  }
+
+  .navbar {
+    padding: 20px;
+  }
+
+  .profile-grid {
+    grid-template-columns: 1fr; /* одна колонка на малых экранах */
+  }
+
+  .auth-left {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .auth-card,
+  .profile-container,
+  .regression-container {
+    flex-direction: column;
+    padding: 20px 15px;
+  }
+
+  .navbar-links {
+    right: 10px;
+    left: 10px;
+    width: auto;
+  }
+
+  .footer {
+    flex-direction: column;
+    text-align: center;
+    gap: 20px;
+  }
+}

@@ -1,0 +1,142 @@
+.regression-wrapper {
+  padding: 80px 20px 40px;
+  background: #111;
+  min-height: 100vh;
+  color: #ccc;
+  font-family: 'Inter', sans-serif;
+}
+
+h2 {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 30px;
+  color: #fff;
+}
+
+.chart-container {
+  width: 100%;
+  max-width: 800px;
+  height: 400px;
+  margin: 0 auto 30px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(8px);
+  overflow: hidden;
+}
+
+canvas {
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
+}
+
+.input-container {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.input-container input {
+  padding: 10px;
+  margin: 0 5px;
+  background: #1d1d1d;
+  color: #ccc;
+  border: 1px solid #333;
+  border-radius: 6px;
+  width: 100px;
+}
+
+.input-container button {
+  padding: 10px 16px;
+  background: #222;
+  color: #eee;
+  border: 1px solid #333;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.input-container button:hover {
+  background: #333;
+}
+
+.regression-info {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+@media (max-width: 768px) {
+  .chart-container {
+    height: 300px;
+    padding: 15px;
+  }
+
+  .input-container input {
+    width: 80px;
+  }
+}
+
+@media (max-width: 480px) {
+  .chart-container {
+    height: 250px;
+    padding: 10px;
+  }
+
+  .input-container input {
+    width: 70px;
+    font-size: 14px;
+  }
+
+  .input-container button {
+    font-size: 14px;
+    padding: 8px 14px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .auth-card,
+  .profile-container,
+  .regression-container {
+    width: 95%;
+    margin: 0 auto;
+    padding: 20px;
+  }
+
+  .navbar {
+    padding: 20px;
+  }
+
+  .profile-grid {
+    grid-template-columns: 1fr; /* одна колонка на малых экранах */
+  }
+
+  .auth-left {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .auth-card,
+  .profile-container,
+  .regression-container {
+    flex-direction: column;
+    padding: 20px 15px;
+  }
+
+  .navbar-links {
+    right: 10px;
+    left: 10px;
+    width: auto;
+  }
+
+  .footer {
+    flex-direction: column;
+    text-align: center;
+    gap: 20px;
+  }
+}

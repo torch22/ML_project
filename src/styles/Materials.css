@@ -1,0 +1,131 @@
+.materials-wrapper {
+  padding: 60px 20px;
+  min-height: 100vh;
+  background: var(--background);
+  color: var(--text);
+  text-align: center;
+}
+
+.materials-wrapper h1 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  margin-bottom: 40px;
+}
+
+.materials-grid {
+  display: grid;
+  gap: 24px;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.material-card {
+  background: var(--card-bg);
+  padding: 24px;
+  border-radius: 16px;
+  box-shadow: 0 0 15px var(--shadow);
+  backdrop-filter: blur(12px);
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.material-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 25px var(--shadow);
+}
+
+.material-card h2 {
+  font-size: 1.5rem;
+  margin-bottom: 8px;
+  color: var(--text);
+}
+
+.material-card p {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+}
+
+.material-list {
+  margin-top: 16px;
+  padding-left: 0;
+  list-style: none;
+}
+
+.material-list li {
+  margin: 8px 0;
+}
+
+.material-list a {
+  color: var(--text);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.material-list a:hover {
+  color: var(--accent);
+}
+
+@media (max-width: 480px) {
+  .materials-wrapper h1 {
+    font-size: 2rem;
+  }
+  .subtitle {
+    font-size: 1rem;
+  }
+  .material-card {
+    padding: 16px;
+  }
+  .material-card h2 {
+    font-size: 1.3rem;
+  }
+}
+
+@media (max-width: 1200px) {
+  .auth-card,
+  .profile-container,
+  .regression-container {
+    width: 95%;
+    margin: 0 auto;
+    padding: 20px;
+  }
+
+  .navbar {
+    padding: 20px;
+  }
+
+  .profile-grid {
+    grid-template-columns: 1fr; /* одна колонка на малых экранах */
+  }
+
+  .auth-left {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .auth-card,
+  .profile-container,
+  .regression-container {
+    flex-direction: column;
+    padding: 20px 15px;
+  }
+
+  .navbar-links {
+    right: 10px;
+    left: 10px;
+    width: auto;
+  }
+
+  .footer {
+    flex-direction: column;
+    text-align: center;
+    gap: 20px;
+  }
+}
