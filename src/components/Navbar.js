@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import '../styles/Navbar.css';
 import { FaBars, FaTimes } from 'react-icons/fa';
+import logo from '../assets/serennex_logo.png'
 
 function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -16,7 +17,10 @@ function Navbar() {
   return (
     <nav className="navbar">
       <div className="navbar-logo">
-        <Link to="/">InsightFactory</Link>
+        <Link to="/" className="logo-link">
+          <img src={logo} alt="Serennex Logo" className="logo-image" />
+          <span className="logo-text">Serennex</span>
+        </Link>
       </div>
 
       <div className={`navbar-links ${menuOpen ? 'open' : ''}`}>

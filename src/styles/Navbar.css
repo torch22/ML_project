@@ -51,6 +51,26 @@
   cursor: pointer;
 }
 
+.logo-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  color: var(--text);
+}
+
+.logo-image {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+}
+
+.logo-text {
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: var(--text);
+}
+
 @media (max-width: 768px) {
   .burger {
     display: block;

@@ -1,4 +1,3 @@
-// About.js
 import { motion } from 'framer-motion';
 import '../styles/About.css';
 import { FaGithub, FaTelegram, FaEnvelope, FaMapMarkerAlt, FaVk, FaPhone } from 'react-icons/fa';
@@ -6,14 +5,14 @@ import { FaGithub, FaTelegram, FaEnvelope, FaMapMarkerAlt, FaVk, FaPhone } from 
 function About() {
   const history = [
     { year: '2024', event: 'Основана команда с целью упростить доступ к ML-инструментам' },
-    { year: '2025', event: 'Разработана первая версия InsightFactory' },
-    { year: '2026', event: 'Запущена образовательная платформа и поддержка графиков' },
+    { year: '2025', event: 'Разработана первая версия Serennex' },
+    { year: '2026', event: 'Запуск проекта на комерческий уровень' },
   ];
 
   const team = [
     { name: 'Елена Мясникова', role: 'Тимлид, бэкенд' },
     { name: 'Данил Булатов', role: 'Фронтенд' },
-    { name: 'Валентин Вэнго', role: 'Контент и UX' },
+    { name: 'Валентин Вэнго', role: 'Контент' },
   ];
 
   return (
