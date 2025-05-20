@@ -198,19 +198,10 @@ function Profile() {
                 <div className="history-cards">
                   {history.slice(-10).reverse().map((item, idx) => (
                     <div key={idx} className="history-card">
-                      <svg width="100" height="60" viewBox="0 0 100 60" className="mini-graph">
-                        <line x1="0" y1="30" x2="100" y2="30" stroke="#555" strokeWidth="1" />
-                        <line x1="50" y1="0" x2="50" y2="60" stroke="#555" strokeWidth="1" />
-                        <circle
-                          cx={50 + Number(item.x) * 5}
-                          cy={30 - Number(item.y) * 5}
-                          r="4"
-                          fill="var(--accent)"
-                        />
-                      </svg>
-                      <p>
-                        <span>{item.timestamp}</span> — X: <strong>{item.x}</strong>, Y: <strong>{item.y}</strong>
-                      </p>
+                      <p><strong>{item.fileName}</strong></p>
+                      <p>Размер: {item.sizeKB} КБ</p>
+                      <p>Тип: {item.type || 'неизвестен'}</p>
+                      <p>Загружен: {item.timestamp}</p>
                     </div>
                   ))}
                 </div>

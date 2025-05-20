@@ -26,7 +26,8 @@ function Navbar() {
       <div className={`navbar-links ${menuOpen ? 'open' : ''}`}>
         <Link to="/about" onClick={() => setMenuOpen(false)}>О проекте</Link>
         <Link to="/materials" onClick={() => setMenuOpen(false)}>Материалы</Link>
-        <Link to="/regression-chart" onClick={() => setMenuOpen(false)}>График</Link>
+        {/* <Link to="/regression-chart" onClick={() => setMenuOpen(false)}>График</Link> */}
+        <Link to="/analysis" onClick={() => setMenuOpen(false)}>Датасеты</Link>
         {user ? (
           <>
             <Link to="/profile" onClick={() => setMenuOpen(false)}>Профиль</Link>
