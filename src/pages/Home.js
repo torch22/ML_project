@@ -10,7 +10,7 @@ function Home() {
     <div className="home-wrapper">
       <motion.section className="hero" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.8 }}>
         <h1>Учитесь. Применяйте. Создавайте.</h1>
-        <p>Машинное обучение доступно каждому. Начните с малого — загрузите свой датасет.</p>
+        <p>Машинное обучение доступно каждому. Начните с малого — загрузите свой первый датасет.</p>
 
         <motion.button
           whileHover={{ scale: 1.05 }}
