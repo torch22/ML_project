@@ -1,18 +1,20 @@
 import { motion } from 'framer-motion';
 import '../styles/About.css';
-import { FaGithub, FaTelegram, FaEnvelope, FaMapMarkerAlt, FaVk, FaPhone } from 'react-icons/fa';
+ 
 
 function About() {
   const history = [
     { year: '2024', event: 'Основана команда с целью упростить доступ к ML-инструментам' },
-    { year: '2025', event: 'Разработана первая версия Serennex' },
+    { year: '2025', event: 'Разработана первая версия проекта' },
     { year: '2026', event: 'Запуск проекта на комерческий уровень' },
   ];
 
   const team = [
     { name: 'Елена Мясникова', role: 'Тимлид, бэкенд' },
     { name: 'Данил Булатов', role: 'Фронтенд' },
-    { name: 'Валентин Вэнго', role: 'Контент' },
+    { name: 'Пустобаев Дмитрий', role: 'Бизнес аналитик' },
+    { name: 'Рачёв Егор', role: 'Бизнес аналитик, бэкенд' },
+    { name: 'Богданова Снежана', role: 'UX/UI дизайнер' },
   ];
 
   return (
@@ -21,7 +23,7 @@ function About() {
         <motion.div className="about-content" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1 }}>
           <h1>О нас</h1>
           <p>
-            InsightFactory — это команда энтузиастов машинного обучения, стремящихся сделать технологии доступными каждому. Мы создаём инструменты, которые упрощают путь от первого датасета до продвинутого анализа и визуализации.
+            Это команда энтузиастов машинного обучения, стремящихся сделать технологии доступными каждому. Мы создаём инструменты, которые упрощают путь от первого датасета до продвинутого анализа и визуализации.
           </p>
         </motion.div>
       </motion.div>
@@ -52,37 +54,6 @@ function About() {
         </div>
       </motion.div>
 
-      <motion.div className="contact-section" initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
-        <h2>Контакты</h2>
-        <div className="contact-grid">
-          <div className="contact-item">
-            <FaEnvelope />
-            <a href="mailto:support@insightfactory.com">support@insightfactory.com</a>
-          </div>
-          <div className="contact-item">
-            <FaPhone />
-            <a href="tel:+79999999999">+7 (999) 999-99-99</a>
-          </div>
-          <div className="contact-item">
-            <FaMapMarkerAlt />
-            <a href="https://yandex.ru/maps/?text=Тюмень ул. Мельникайте 70" target="_blank" rel="noreferrer">
-              г. Тюмень ул. Мельникайте 70
-            </a>
-          </div>
-          <div className="contact-item">
-            <FaGithub />
-            <a href="https://github.com/insightfactory" target="_blank" rel="noreferrer">github.com/insightfactory</a>
-          </div>
-          <div className="contact-item">
-            <FaTelegram />
-            <a href="https://t.me/insight_factory" target="_blank" rel="noreferrer">@insight_factory</a>
-          </div>
-          <div className="contact-item">
-            <FaVk />
-            <a href="https://vk.com/insightfactory" target="_blank" rel="noreferrer">vk.com/insightfactory</a>
-          </div>
-        </div>
-      </motion.div>
     </div>
   );
 }

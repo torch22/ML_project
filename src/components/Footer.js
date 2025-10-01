@@ -34,7 +34,7 @@ function Footer() {
         {/* Правая часть */}
         <div className="footer-right">
           <div className="footer-contact">
-            <p><FaEnvelope /> <a href="mailto:support@insightfactory.com">support@insightfactory.com</a></p>
+            <p><FaEnvelope /> <a href="mailto:support@example.com">support@example.com</a></p>
             <p><FaPhone /> <a href="tel:+79999999">+7 (999) 999-99-99</a></p>
           </div>
 

@@ -18,8 +18,7 @@ function Navbar() {
     <nav className="navbar">
       <div className="navbar-logo">
         <Link to="/" className="logo-link">
-          <img src={logo} alt="Serennex Logo" className="logo-image" />
-          <span className="logo-text">Serennex</span>
+          <img src={logo} alt="Логотип" className="logo-image" />
         </Link>
       </div>
 
